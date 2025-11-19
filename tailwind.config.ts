@@ -47,6 +47,12 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        candle: {
+          glow: "hsl(var(--candle-glow))",
+        },
+        dark: {
+          bg: "hsl(var(--dark-bg))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -80,10 +86,48 @@ export default {
             height: "0",
           },
         },
+        "fade-in": {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(20px)"
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)"
+          }
+        },
+        "glow": {
+          "0%, 100%": {
+            opacity: "1"
+          },
+          "50%": {
+            opacity: "0.7"
+          }
+        },
+        "flicker": {
+          "0%, 100%": {
+            opacity: "1"
+          },
+          "41%": {
+            opacity: "0.8"
+          },
+          "43%": {
+            opacity: "1"
+          },
+          "45%": {
+            opacity: "0.9"
+          },
+          "47%": {
+            opacity: "1"
+          }
+        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "fade-in": "fade-in 0.6s ease-out",
+        "glow": "glow 3s ease-in-out infinite",
+        "flicker": "flicker 4s ease-in-out infinite"
       },
     },
   },
