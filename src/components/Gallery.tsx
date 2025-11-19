@@ -18,6 +18,16 @@ import gallery14 from "@/assets/gallery/DSC1319.jpg";
 import gallery15 from "@/assets/gallery/DSC1331.jpg";
 import gallery16 from "@/assets/gallery/DSC1333.jpg";
 import gallery17 from "@/assets/gallery/DSC1335.jpg";
+import gallery18 from "@/assets/gallery/DSC1347.jpg";
+import gallery19 from "@/assets/gallery/DSC1350.jpg";
+import gallery20 from "@/assets/gallery/DSC1355.jpg";
+import gallery21 from "@/assets/gallery/DSC1359.jpg";
+import gallery22 from "@/assets/gallery/DSC1375.jpg";
+import gallery23 from "@/assets/gallery/DSC1378.jpg";
+import gallery24 from "@/assets/gallery/DSC1382.jpg";
+import gallery25 from "@/assets/gallery/DSC1384.jpg";
+import gallery26 from "@/assets/gallery/DSC1388.jpg";
+import gallery27 from "@/assets/gallery/DSC1396.jpg";
 
 const galleryImages = [
   { src: gallery8, alt: "EOS лого с декоративни свещи" },
@@ -30,6 +40,16 @@ const galleryImages = [
   { src: gallery15, alt: "Лидери на EOS" },
   { src: gallery16, alt: "Symphony of Time събития" },
   { src: gallery17, alt: "Приветствия и поздравления" },
+  { src: gallery18, alt: "Поздравления с цветя" },
+  { src: gallery19, alt: "Празнични букети" },
+  { src: gallery20, alt: "Топла среща" },
+  { src: gallery21, alt: "Приятелски разговори" },
+  { src: gallery22, alt: "Гости на събитието" },
+  { src: gallery23, alt: "Екипна снимка" },
+  { src: gallery24, alt: "Колеги на EOS" },
+  { src: gallery25, alt: "Сърдечни поздрави" },
+  { src: gallery26, alt: "Бизнес партньори" },
+  { src: gallery27, alt: "Празнична атмосфера" },
   { src: gallery1, alt: "Композиция от свещи на събитието на EOS" },
   { src: gallery2, alt: "Подаръчни торби с брандинг на EOS" },
   { src: gallery3, alt: "Разговор между гости на събитието" },
