@@ -44,7 +44,7 @@ const Gallery = () => {
   };
 
   return (
-    <section className="py-20 bg-muted/30">
+    <section id="gallery" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 animate-fade-in">
           <div className="inline-flex items-center gap-2 mb-4">
