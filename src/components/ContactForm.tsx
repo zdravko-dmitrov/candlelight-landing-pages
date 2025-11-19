@@ -36,14 +36,10 @@ const ContactForm = () => {
           <div className="text-center mb-12">
             <div className="flex justify-center items-center gap-2 mb-4">
               <Flame className="w-6 h-6 text-primary animate-flicker" />
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-                Свържете се с нас
-              </h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground">Свържете се с нас</h2>
               <Flame className="w-6 h-6 text-primary animate-flicker" style={{ animationDelay: "2s" }} />
             </div>
-            <p className="text-muted-foreground text-lg">
-              Имате въпроси? Свържете се с екипа на EOS Matrix Bulgaria
-            </p>
+            <p className="text-muted-foreground text-lg">Имате въпроси? Свържете се с екипа на EOS Matrix Bulgaria</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -56,7 +52,10 @@ const ContactForm = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold mb-1">Email</h3>
-                    <a href="mailto:info@bg.eos-solutions.com" className="text-muted-foreground hover:text-primary transition-colors">
+                    <a
+                      href="mailto:z.dimitrov9626@gmail.com"
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                    >
                       info@bg.eos-solutions.com
                     </a>
                   </div>
@@ -84,20 +83,20 @@ const ContactForm = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold mb-1">Адрес</h3>
-                    <p className="text-muted-foreground">
-                      София, България
-                    </p>
+                    <p className="text-muted-foreground">София, България</p>
                   </div>
                 </div>
               </Card>
 
               <Card className="p-6 bg-primary/5 border-primary/20">
                 <p className="text-sm text-muted-foreground text-center">
-                  <strong className="text-foreground">EOS Matrix Bulgaria</strong><br />
-                  Changing finances for the better.<br />
-                  <a 
-                    href="https://www.bg.eos-solutions.com" 
-                    target="_blank" 
+                  <strong className="text-foreground">EOS Matrix Bulgaria</strong>
+                  <br />
+                  Changing finances for the better.
+                  <br />
+                  <a
+                    href="https://www.bg.eos-solutions.com"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="text-primary hover:underline"
                   >
