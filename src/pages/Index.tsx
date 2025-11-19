@@ -5,6 +5,7 @@ import VideoSection from "@/components/VideoSection";
 import Gallery from "@/components/Gallery";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
+import BackToTop from "@/components/BackToTop";
 
 const Index = () => {
   return (
@@ -16,6 +17,7 @@ const Index = () => {
       <Gallery />
       <ContactForm />
       <Footer />
+      <BackToTop />
     </div>
   );
 };
