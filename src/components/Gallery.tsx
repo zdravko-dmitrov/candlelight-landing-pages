@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { X, ChevronLeft, ChevronRight, Camera } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import gallery1 from "@/assets/gallery/DSC1197.jpg";
 import gallery2 from "@/assets/gallery/DSC1244.jpg";
 import gallery3 from "@/assets/gallery/DSC1260.jpg";
@@ -7,22 +8,71 @@ import gallery4 from "@/assets/gallery/DSC1265.jpg";
 import gallery5 from "@/assets/gallery/DSC1266.jpg";
 import gallery6 from "@/assets/gallery/DSC1270.jpg";
 import gallery7 from "@/assets/gallery/DSC1271.jpg";
+import gallery8 from "@/assets/gallery/DSC1194.jpg";
+import gallery9 from "@/assets/gallery/DSC1271-2.jpg";
+import gallery10 from "@/assets/gallery/DSC1279.jpg";
+import gallery11 from "@/assets/gallery/DSC1284.jpg";
+import gallery12 from "@/assets/gallery/DSC1304.jpg";
+import gallery13 from "@/assets/gallery/DSC1305.jpg";
+import gallery14 from "@/assets/gallery/DSC1319.jpg";
+import gallery15 from "@/assets/gallery/DSC1331.jpg";
+import gallery16 from "@/assets/gallery/DSC1333.jpg";
+import gallery17 from "@/assets/gallery/DSC1335.jpg";
 
 const galleryImages = [
-  { src: gallery1, alt: "Candles arrangement at EOS event" },
-  { src: gallery2, alt: "EOS branded gift bags" },
-  { src: gallery3, alt: "Event guests conversation" },
-  { src: gallery4, alt: "Formal greeting at entrance" },
-  { src: gallery5, alt: "Guests at the event" },
-  { src: gallery6, alt: "Celebration moments" },
-  { src: gallery7, alt: "Group photo at EOS anniversary" },
+  { src: gallery8, alt: "EOS лого с декоративни свещи" },
+  { src: gallery9, alt: "Екип на събитието" },
+  { src: gallery10, alt: "Разговор между гости" },
+  { src: gallery11, alt: "Бизнес срещи на събитието" },
+  { src: gallery12, alt: "Групова снимка на екипа" },
+  { src: gallery13, alt: "Групова снимка на екипа" },
+  { src: gallery14, alt: "Споделяне на моменти" },
+  { src: gallery15, alt: "Лидери на EOS" },
+  { src: gallery16, alt: "Symphony of Time събития" },
+  { src: gallery17, alt: "Приветствия и поздравления" },
+  { src: gallery1, alt: "Композиция от свещи на събитието на EOS" },
+  { src: gallery2, alt: "Подаръчни торби с брандинг на EOS" },
+  { src: gallery3, alt: "Разговор между гости на събитието" },
+  { src: gallery4, alt: "Официално посрещане на входа" },
+  { src: gallery5, alt: "Гости на събитието" },
+  { src: gallery6, alt: "Празнични моменти" },
+  { src: gallery7, alt: "Групова снимка на 23-та годишнина на EOS" },
 ];
+
+// Pagination settings per device
+const ITEMS_PER_PAGE = {
+  desktop: 12,
+  tablet: 9,
+  mobile: 4,
+};
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // Determine items per page based on screen size
+  const getItemsPerPage = () => {
+    if (window.innerWidth >= 1024) return ITEMS_PER_PAGE.desktop;
+    if (window.innerWidth >= 768) return ITEMS_PER_PAGE.tablet;
+    return ITEMS_PER_PAGE.mobile;
+  };
+
+  const [itemsPerPage, setItemsPerPage] = useState(getItemsPerPage());
+
+  // Update items per page on window resize
+  useState(() => {
+    const handleResize = () => setItemsPerPage(getItemsPerPage());
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  });
+
+  const totalPages = Math.ceil(galleryImages.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentImages = galleryImages.slice(startIndex, endIndex);
 
   const openLightbox = (index: number) => {
-    setSelectedImage(index);
+    setSelectedImage(startIndex + index);
   };
 
   const closeLightbox = () => {
@@ -43,6 +93,11 @@ const Gallery = () => {
     }
   };
 
+  const goToPage = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: document.getElementById("gallery")?.offsetTop, behavior: "smooth" });
+  };
+
   return (
     <section id="gallery" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
@@ -58,10 +113,11 @@ const Gallery = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-          {galleryImages.map((image, index) => (
+        {/* Gallery Grid - Responsive columns */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto mb-12">
+          {currentImages.map((image, index) => (
             <div
-              key={index}
+              key={startIndex + index}
               className="group relative overflow-hidden rounded-lg cursor-pointer aspect-[4/3] animate-fade-in hover-scale"
               style={{ animationDelay: `${index * 0.1}s` }}
               onClick={() => openLightbox(index)}
@@ -80,13 +136,52 @@ const Gallery = () => {
           ))}
         </div>
 
+        {/* Pagination Controls */}
+        {totalPages > 1 && (
+          <div className="flex items-center justify-center gap-2">
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => goToPage(currentPage - 1)}
+              disabled={currentPage === 1}
+              className="disabled:opacity-50"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </Button>
+
+            <div className="flex gap-2">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                <Button
+                  key={page}
+                  variant={currentPage === page ? "default" : "outline"}
+                  size="icon"
+                  onClick={() => goToPage(page)}
+                  className="w-10 h-10"
+                >
+                  {page}
+                </Button>
+              ))}
+            </div>
+
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => goToPage(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              className="disabled:opacity-50"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </Button>
+          </div>
+        )}
+
         {/* Lightbox */}
         {selectedImage !== null && (
           <div className="fixed inset-0 z-50 bg-dark-bg/95 flex items-center justify-center p-4 animate-fade-in">
             <button
               onClick={closeLightbox}
               className="absolute top-4 right-4 text-foreground hover:text-primary transition-colors p-2 rounded-full bg-background/10 hover:bg-background/20"
-              aria-label="Close gallery"
+              aria-label="Затвори галерия"
             >
               <X className="w-8 h-8" />
             </button>
@@ -94,7 +189,7 @@ const Gallery = () => {
             <button
               onClick={prevImage}
               className="absolute left-4 text-foreground hover:text-primary transition-colors p-2 rounded-full bg-background/10 hover:bg-background/20"
-              aria-label="Previous image"
+              aria-label="Предишна снимка"
             >
               <ChevronLeft className="w-8 h-8" />
             </button>
@@ -102,7 +197,7 @@ const Gallery = () => {
             <button
               onClick={nextImage}
               className="absolute right-4 text-foreground hover:text-primary transition-colors p-2 rounded-full bg-background/10 hover:bg-background/20"
-              aria-label="Next image"
+              aria-label="Следваща снимка"
             >
               <ChevronRight className="w-8 h-8" />
             </button>
