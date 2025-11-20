@@ -8,15 +8,11 @@ const VideoSection = () => {
           <div className="text-center mb-12 animate-fade-in">
             <div className="inline-flex items-center gap-2 mb-4">
               <Play className="w-8 h-8 text-primary animate-glow" />
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground">
-                Видео от събитието
-              </h2>
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground">Видео от събитието</h2>
             </div>
-            <p className="text-muted-foreground text-lg">
-              Заживейте отново магията на нашата празнична вечер
-            </p>
+            <p className="text-muted-foreground text-lg">Изживейте отново магията на нашата празнична вечер</p>
           </div>
-          
+
           <div className="relative aspect-video rounded-lg overflow-hidden shadow-2xl border border-border/50 animate-fade-in">
             <iframe
               className="w-full h-full"
