@@ -39,8 +39,8 @@ const Navigation = () => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "bg-background/95 backdrop-blur-md shadow-lg border-b border-border translate-y-0"
-          : "bg-dark-bg/70 backdrop-blur-sm -translate-y-full"
+          ? "bg-white/95 backdrop-blur-md shadow-md border-b border-gray-200 translate-y-0"
+          : "bg-white/90 backdrop-blur-sm -translate-y-full"
       }`}
     >
       <div className="container mx-auto px-4">
@@ -52,9 +52,7 @@ const Navigation = () => {
                 key={item.href}
                 variant="ghost"
                 onClick={() => scrollToSection(item.href)}
-                className={`${
-                  isScrolled ? "text-foreground" : "text-white"
-                } hover:text-primary hover:bg-primary/10 transition-colors px-4 py-2 font-medium`}
+                className="text-gray-900 hover:text-primary hover:bg-primary/10 transition-colors px-4 py-2 font-medium"
               >
                 {item.label}
               </Button>
@@ -64,9 +62,7 @@ const Navigation = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`md:hidden p-2 ${
-              isScrolled ? "text-foreground" : "text-white"
-            } hover:text-primary transition-colors`}
+            className="md:hidden p-2 text-gray-900 hover:text-primary transition-colors"
             aria-label="Toggle menu"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -75,13 +71,13 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden py-4 border-t border-white/10 bg-dark-bg/95 backdrop-blur-md animate-fade-in">
+          <div className="md:hidden py-4 border-t border-gray-200 bg-white/95 backdrop-blur-md animate-fade-in">
             <div className="flex flex-col gap-2">
               {navItems.map((item) => (
                 <button
                   key={item.href}
                   onClick={() => scrollToSection(item.href)}
-                  className="text-left px-4 py-3 text-white hover:text-primary hover:bg-primary/10 transition-colors rounded-lg font-medium"
+                  className="text-left px-4 py-3 text-gray-900 hover:text-primary hover:bg-primary/10 transition-colors rounded-lg font-medium"
                 >
                   {item.label}
                 </button>
