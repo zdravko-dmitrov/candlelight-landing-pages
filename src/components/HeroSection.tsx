@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Flame } from "lucide-react";
 import heroCandles from "@/assets/hero-candles.jpg";
-import eosLogo from "@/assets/eos-logo.png";
 
 const HeroSection = () => {
   const scrollToContact = () => {
@@ -25,14 +24,6 @@ const HeroSection = () => {
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center">
-        <div className="mb-8 animate-fade-in">
-          <img 
-            src={eosLogo} 
-            alt="EOS Logo" 
-            className="h-16 md:h-20 mx-auto mb-8"
-          />
-        </div>
-
         <div className="flex justify-center items-center gap-3 mb-6 animate-fade-in" style={{ animationDelay: "0.2s" }}>
           <Flame className="w-8 h-8 text-candle-glow animate-flicker" />
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-primary-foreground">
