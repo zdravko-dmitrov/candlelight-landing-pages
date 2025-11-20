@@ -190,15 +190,17 @@ const Gallery = () => {
         )}
 
         {/* Disclaimer */}
-        <p className="text-center text-sm text-muted-foreground mt-8">
-          За персонални снимки от празненството, моля, обърнете се към{" "}
-          <a 
-            href="mailto:marketing@eos-matrix.bg"
-            className="text-primary hover:underline transition-all"
-          >
-            marketing@eos-matrix.bg
-          </a>
-        </p>
+        <div className="mt-8 bg-accent/30 rounded-2xl p-8 text-center max-w-4xl mx-auto">
+          <p className="text-sm text-muted-foreground">
+            За персонални снимки от празненството, моля, обърнете се към{" "}
+            <a 
+              href="mailto:marketing@eos-matrix.bg"
+              className="text-primary hover:underline transition-all"
+            >
+              marketing@eos-matrix.bg
+            </a>
+          </p>
+        </div>
 
         {/* Lightbox */}
         {selectedImage !== null && (
