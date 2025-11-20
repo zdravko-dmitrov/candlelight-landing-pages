@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import eosLogo from "@/assets/eos-logo.png";
 import { Button } from "@/components/ui/button";
 
 const navItems = [
@@ -45,23 +44,7 @@ const Navigation = () => {
       }`}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <a
-            href="#hero"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection("#hero");
-            }}
-            className="flex items-center"
-          >
-            <img
-              src={eosLogo}
-              alt="EOS Logo"
-              className="h-10 md:h-12 transition-all duration-300"
-            />
-          </a>
-
+        <div className="flex items-center justify-center h-20">
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-1">
             {navItems.map((item) => (
