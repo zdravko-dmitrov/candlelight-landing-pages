@@ -1,12 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { Flame } from "lucide-react";
 import heroCandles from "@/assets/hero-candles.jpg";
 
 const HeroSection = () => {
-  const scrollToContact = () => {
-    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
@@ -24,31 +18,17 @@ const HeroSection = () => {
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center">
-        <div className="flex justify-center items-center gap-3 mb-6 animate-fade-in" style={{ animationDelay: "0.2s" }}>
-          <Flame className="w-8 h-8 text-candle-glow animate-flicker" />
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-primary-foreground">
-            Symphony of Time
-          </h1>
-          <Flame className="w-8 h-8 text-candle-glow animate-flicker" style={{ animationDelay: "2s" }} />
-        </div>
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-primary-foreground mb-6 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+          Symphony of Time
+        </h1>
 
         <p className="text-xl md:text-2xl text-primary-foreground/90 mb-4 animate-fade-in" style={{ animationDelay: "0.4s" }}>
           23 години EOS в България
         </p>
 
-        <p className="text-lg md:text-xl text-primary-foreground/80 max-w-3xl mx-auto mb-12 leading-relaxed animate-fade-in" style={{ animationDelay: "0.6s" }}>
+        <p className="text-lg md:text-xl text-primary-foreground/80 max-w-3xl mx-auto mb-16 leading-relaxed animate-fade-in" style={{ animationDelay: "0.6s" }}>
           Благодарим на всички клиенти и партньори на EOS, които бяха част от празничната вечер
         </p>
-
-        <Button 
-          variant="hero" 
-          size="lg" 
-          onClick={scrollToContact}
-          className="animate-fade-in text-lg px-8 py-6 h-auto"
-          style={{ animationDelay: "0.8s" }}
-        >
-          Свържете се с нас
-        </Button>
 
         {/* Decorative Elements */}
         <div className="mt-16 flex justify-center gap-4 opacity-40">
