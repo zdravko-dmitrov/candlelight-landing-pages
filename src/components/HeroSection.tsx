@@ -2,39 +2,44 @@ import heroCandles from "@/assets/hero-candles.jpg";
 
 const HeroSection = () => {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Overlay */}
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-dark-bg">
+      {/* Background Image with Dark Overlay */}
       <div 
-        className="absolute inset-0 bg-cover bg-center"
+        className="absolute inset-0 bg-cover bg-center opacity-40"
         style={{ backgroundImage: `url(${heroCandles})` }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-dark-bg/80 via-dark-bg/60 to-dark-bg/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-dark-bg via-dark-bg/80 to-dark-bg" />
       </div>
 
-      {/* Animated Candle Glow Effects */}
-      <div className="absolute top-20 left-20 w-32 h-32 bg-candle-glow rounded-full blur-3xl opacity-20 animate-glow" />
-      <div className="absolute bottom-40 right-32 w-40 h-40 bg-candle-glow rounded-full blur-3xl opacity-20 animate-glow" style={{ animationDelay: "1s" }} />
-      <div className="absolute top-1/3 right-20 w-24 h-24 bg-candle-glow rounded-full blur-3xl opacity-20 animate-glow" style={{ animationDelay: "2s" }} />
+      {/* Ambient Glow Effects - Candlelight Simulation */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px] opacity-30 animate-glow" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px] opacity-30 animate-glow" style={{ animationDelay: "1.5s" }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[150px] opacity-20 animate-glow" style={{ animationDelay: "3s" }} />
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 animate-fade-in leading-tight" style={{ animationDelay: "0.2s" }}>
-          Symphony of Time
+        {/* Main Title with Glow Effect */}
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 animate-fade-in-up leading-tight tracking-tight" style={{ animationDelay: "0.2s" }}>
+          <span className="text-shadow-glow">Symphony of Time</span>
         </h1>
 
-        <p className="text-xl md:text-2xl lg:text-3xl font-bold text-primary-foreground mb-4 animate-fade-in" style={{ animationDelay: "0.4s" }}>
+        {/* Subtitle with Italic Style */}
+        <p className="text-2xl md:text-3xl lg:text-4xl font-bold italic text-primary mb-8 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
           23 години EOS в България
         </p>
 
-        <p className="text-base md:text-lg text-primary-foreground/90 max-w-3xl mx-auto mb-16 leading-relaxed md:leading-[1.7] animate-fade-in" style={{ animationDelay: "0.6s" }}>
-          Благодарим на всички клиенти и партньори на EOS, които бяха част от празничната вечер
-        </p>
+        {/* Description with Glassmorphism */}
+        <div className="glass-card max-w-3xl mx-auto p-8 rounded-2xl mb-16 animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
+          <p className="text-base md:text-lg text-white/90 leading-relaxed md:leading-[1.7]">
+            Благодарим на всички клиенти и партньори на EOS, които бяха част от празничната вечер
+          </p>
+        </div>
 
-        {/* Decorative Elements */}
-        <div className="mt-16 flex justify-center gap-4 opacity-40">
-          <div className="w-1 h-24 bg-gradient-to-b from-transparent via-candle-glow to-transparent animate-glow" />
-          <div className="w-1 h-32 bg-gradient-to-b from-transparent via-candle-glow to-transparent animate-glow" style={{ animationDelay: "1s" }} />
-          <div className="w-1 h-24 bg-gradient-to-b from-transparent via-candle-glow to-transparent animate-glow" style={{ animationDelay: "2s" }} />
+        {/* Decorative Candlelight Lines */}
+        <div className="mt-16 flex justify-center gap-6 opacity-50">
+          <div className="w-0.5 h-20 bg-gradient-to-b from-transparent via-primary to-transparent animate-glow" />
+          <div className="w-0.5 h-28 bg-gradient-to-b from-transparent via-primary to-transparent animate-glow" style={{ animationDelay: "1s" }} />
+          <div className="w-0.5 h-24 bg-gradient-to-b from-transparent via-primary to-transparent animate-glow" style={{ animationDelay: "2s" }} />
         </div>
       </div>
     </section>

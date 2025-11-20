@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { X, ChevronLeft, ChevronRight, Camera } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import gallery1 from "@/assets/gallery/DSC1197.jpg";
 import gallery2 from "@/assets/gallery/DSC1244.jpg";
 import gallery3 from "@/assets/gallery/DSC1260.jpg";
@@ -189,25 +188,24 @@ const Gallery = () => {
           </div>
         )}
 
-        {/* Disclaimer */}
-        <div className="mt-8 bg-accent/30 rounded-2xl p-8 text-center max-w-4xl mx-auto">
-          <p className="text-sm text-muted-foreground">
-            За персонални снимки от празненството, моля, обърнете се към{" "}
-            <a 
-              href="mailto:marketing@eos-matrix.bg"
-              className="text-primary hover:underline transition-all"
-            >
-              marketing@eos-matrix.bg
-            </a>
-          </p>
+        {/* Disclaimer with Glassmorphism */}
+        <div className="mt-4 text-center animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
+          <div className="glass-card max-w-2xl mx-auto p-6 rounded-2xl border-white/10">
+            <p className="text-sm text-white/70">
+              За персонални снимки от празненството, моля, обърнете се към{" "}
+              <a href="mailto:marketing@eos-matrix.bg" className="text-primary hover:text-primary/80 transition-colors underline">
+                marketing@eos-matrix.bg
+              </a>
+            </p>
+          </div>
         </div>
 
-        {/* Lightbox */}
+        {/* Lightbox Modal with Enhanced Dark Theme */}
         {selectedImage !== null && (
-          <div className="fixed inset-0 z-50 bg-dark-bg/95 flex items-center justify-center p-4 animate-fade-in">
+          <div className="fixed inset-0 z-50 bg-dark-bg/95 backdrop-blur-xl flex items-center justify-center p-4 animate-fade-in">
             <button
               onClick={closeLightbox}
-              className="absolute top-4 right-4 text-foreground hover:text-primary transition-colors p-2 rounded-full bg-background/10 hover:bg-background/20"
+              className="absolute top-4 right-4 text-white hover:text-primary transition-colors p-2 rounded-full glass-card hover:scale-110"
               aria-label="Затвори галерия"
             >
               <X className="w-8 h-8" />
@@ -215,7 +213,7 @@ const Gallery = () => {
 
             <button
               onClick={prevImage}
-              className="absolute left-4 text-foreground hover:text-primary transition-colors p-2 rounded-full bg-background/10 hover:bg-background/20"
+              className="absolute left-4 text-white hover:text-primary transition-colors p-2 rounded-full glass-card hover:scale-110"
               aria-label="Предишна снимка"
             >
               <ChevronLeft className="w-8 h-8" />
@@ -223,7 +221,7 @@ const Gallery = () => {
 
             <button
               onClick={nextImage}
-              className="absolute right-4 text-foreground hover:text-primary transition-colors p-2 rounded-full bg-background/10 hover:bg-background/20"
+              className="absolute right-4 text-white hover:text-primary transition-colors p-2 rounded-full glass-card hover:scale-110"
               aria-label="Следваща снимка"
             >
               <ChevronRight className="w-8 h-8" />
@@ -232,10 +230,10 @@ const Gallery = () => {
             <img
               src={galleryImages[selectedImage].src}
               alt={galleryImages[selectedImage].alt}
-              className="max-w-full max-h-[90vh] object-contain rounded-lg animate-scale-in"
+              className="max-w-full max-h-[90vh] object-contain rounded-lg animate-scale-in shadow-glow"
             />
 
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-foreground bg-background/10 px-4 py-2 rounded-full backdrop-blur-sm">
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white glass-card px-6 py-3 rounded-full backdrop-blur-md">
               {selectedImage + 1} / {galleryImages.length}
             </div>
           </div>
