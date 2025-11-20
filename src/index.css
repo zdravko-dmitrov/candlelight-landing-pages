@@ -156,6 +156,6 @@ All colors MUST be HSL.
   }
 
   .text-shadow-glow {
-    text-shadow: 0 0 30px hsl(351, 87%, 45%, 0.5);
+    text-shadow: 0 0 10px hsl(351, 87%, 45%, 0.15);
   }
 }
