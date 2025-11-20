@@ -18,7 +18,7 @@ const ContactInfo = () => {
 
           <div className="grid md:grid-cols-3 gap-6 mb-12 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
             {/* Email */}
-            <div className="glass-card p-8 hover:border-primary/30 transition-all duration-300 group hover:-translate-y-2 border-white/10">
+            <div className="glass-card rounded-3xl p-8 hover:border-primary/30 transition-all duration-300 group hover:-translate-y-2 border-white/10">
               <div className="flex flex-col items-center text-center gap-4">
                 <div className="p-4 bg-primary/20 rounded-2xl group-hover:scale-110 transition-transform">
                   <Mail className="w-8 h-8 text-primary" />
@@ -36,7 +36,7 @@ const ContactInfo = () => {
             </div>
 
             {/* Phone */}
-            <div className="glass-card p-8 hover:border-primary/30 transition-all duration-300 group hover:-translate-y-2 border-white/10">
+            <div className="glass-card rounded-3xl p-8 hover:border-primary/30 transition-all duration-300 group hover:-translate-y-2 border-white/10">
               <div className="flex flex-col items-center text-center gap-4">
                 <div className="p-4 bg-primary/20 rounded-2xl group-hover:scale-110 transition-transform">
                   <Phone className="w-8 h-8 text-primary" />
@@ -54,7 +54,7 @@ const ContactInfo = () => {
             </div>
 
             {/* Address */}
-            <div className="glass-card p-8 hover:border-primary/30 transition-all duration-300 group hover:-translate-y-2 border-white/10">
+            <div className="glass-card rounded-3xl p-8 hover:border-primary/30 transition-all duration-300 group hover:-translate-y-2 border-white/10">
               <div className="flex flex-col items-center text-center gap-4">
                 <div className="p-4 bg-primary/20 rounded-2xl group-hover:scale-110 transition-transform">
                   <MapPin className="w-8 h-8 text-primary" />
@@ -72,7 +72,7 @@ const ContactInfo = () => {
           </div>
 
           {/* Business Hours Card */}
-          <div className="glass-card p-8 border-white/10 text-center max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
+          <div className="glass-card rounded-3xl p-8 border-white/10 text-center max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
             <h3 className="font-bold text-xl mb-4 text-white">Работно време:</h3>
             <p className="text-white/70 text-base md:text-lg leading-relaxed">
               Понеделник - Петък: 08:00 ч. - 16:30 ч.<br />
