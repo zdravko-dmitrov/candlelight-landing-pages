@@ -18,9 +18,9 @@ const ContactInfo = () => {
 
           <div className="grid md:grid-cols-3 gap-6 mb-12 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
             {/* Email */}
-            <div className="glass-card rounded-3xl p-8 hover:border-primary/30 transition-all duration-300 group hover:-translate-y-2 border-border">
+            <div className="glass-card rounded-3xl p-8 hover:border-primary/30 transition-all duration-300 group hover:-translate-y-2 hover:shadow-xl border-border">
               <div className="flex flex-col items-center text-center gap-4">
-                <div className="p-4 bg-primary/20 rounded-2xl group-hover:scale-110 transition-transform">
+                <div className="p-4 bg-primary/10 rounded-2xl group-hover:scale-110 transition-transform shadow-md border border-primary/20">
                   <Mail className="w-8 h-8 text-primary" />
                 </div>
                 <div>
@@ -36,9 +36,9 @@ const ContactInfo = () => {
             </div>
 
             {/* Phone */}
-            <div className="glass-card rounded-3xl p-8 hover:border-primary/30 transition-all duration-300 group hover:-translate-y-2 border-border">
+            <div className="glass-card rounded-3xl p-8 hover:border-primary/30 transition-all duration-300 group hover:-translate-y-2 hover:shadow-xl border-border">
               <div className="flex flex-col items-center text-center gap-4">
-                <div className="p-4 bg-primary/20 rounded-2xl group-hover:scale-110 transition-transform">
+                <div className="p-4 bg-primary/10 rounded-2xl group-hover:scale-110 transition-transform shadow-md border border-primary/20">
                   <Phone className="w-8 h-8 text-primary" />
                 </div>
                 <div>
@@ -54,9 +54,9 @@ const ContactInfo = () => {
             </div>
 
             {/* Address */}
-            <div className="glass-card rounded-3xl p-8 hover:border-primary/30 transition-all duration-300 group hover:-translate-y-2 border-border">
+            <div className="glass-card rounded-3xl p-8 hover:border-primary/30 transition-all duration-300 group hover:-translate-y-2 hover:shadow-xl border-border">
               <div className="flex flex-col items-center text-center gap-4">
-                <div className="p-4 bg-primary/20 rounded-2xl group-hover:scale-110 transition-transform">
+                <div className="p-4 bg-primary/10 rounded-2xl group-hover:scale-110 transition-transform shadow-md border border-primary/20">
                   <MapPin className="w-8 h-8 text-primary" />
                 </div>
                 <div>
