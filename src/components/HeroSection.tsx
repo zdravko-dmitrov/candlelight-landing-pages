@@ -20,20 +20,13 @@ const HeroSection = () => {
       <div className="relative z-10 container mx-auto px-4 text-center">
         {/* Main Title with Glow Effect */}
         <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 animate-fade-in-up leading-tight tracking-tight" style={{ animationDelay: "0.2s" }}>
-          <span className="text-shadow-glow">Symphony of Time</span>
+          <span className="text-shadow-glow">23 години EOS в България</span>
         </h1>
 
         {/* Subtitle with Italic Style */}
-        <p className="text-2xl md:text-3xl lg:text-4xl font-bold italic text-primary mb-8 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
-          23 години EOS в България
+        <p className="text-2xl md:text-3xl lg:text-4xl font-bold italic text-primary mb-16 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
+          Symphony of Time
         </p>
-
-        {/* Description with Glassmorphism */}
-        <div className="glass-card max-w-3xl mx-auto p-8 rounded-2xl mb-16 animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
-          <p className="text-base md:text-lg text-white/90 leading-relaxed md:leading-[1.7]">
-            Благодарим на всички клиенти и партньори на EOS, които бяха част от празничната вечер
-          </p>
-        </div>
 
         {/* Decorative Candlelight Lines */}
         <div className="mt-16 flex justify-center gap-6 opacity-50">

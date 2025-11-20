@@ -22,7 +22,7 @@ const EventStory = () => {
             <div className="flex flex-col items-center justify-center p-8 text-center h-full">
               <Calendar className="w-12 h-12 text-primary mb-4 group-hover:scale-110 transition-transform" />
               <h3 className="font-bold text-xl mb-2 text-white">Дата</h3>
-              <p className="text-white/70">21 ноември 2024</p>
+              <p className="text-white/70">26 юни 2025</p>
             </div>
           </Card>
 
@@ -30,7 +30,7 @@ const EventStory = () => {
             <div className="flex flex-col items-center justify-center p-8 text-center h-full">
               <MapPin className="w-12 h-12 text-primary mb-4 group-hover:scale-110 transition-transform" />
               <h3 className="font-bold text-xl mb-2 text-white">Локация</h3>
-              <p className="text-white/70">София, България</p>
+              <p className="text-white/70">Гранд Хотел София</p>
             </div>
           </Card>
 
@@ -38,7 +38,7 @@ const EventStory = () => {
             <div className="flex flex-col items-center justify-center p-8 text-center h-full">
               <Music className="w-12 h-12 text-primary mb-4 group-hover:scale-110 transition-transform" />
               <h3 className="font-bold text-xl mb-2 text-white">Музика</h3>
-              <p className="text-white/70">Камерен оркестър</p>
+              <p className="text-white/70">Струнен квартет</p>
             </div>
           </Card>
         </div>
@@ -49,34 +49,22 @@ const EventStory = () => {
           <div className="glass-card p-10 md:p-12 rounded-3xl border-white/10 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
             <div className="border-l-4 border-primary pl-8">
               <p className="text-xl md:text-2xl leading-relaxed font-bold text-white italic">
-                Рожденият ден е празник, той е време за отчитане на достиженията и за оглеждане назад към преминатия път, не за да се върнем в миналото, а за да разберем по-добре настоящето.
+                Рожденият ден е празник. Рожденият ден е равносметка. Ден за пожелания и поглед към бъдещето. Ден за спомен какво е било.
               </p>
             </div>
           </div>
 
-          {/* Main Story - Equal Height Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
-            <div className="md:col-span-7 glass-card p-8 md:p-10 rounded-3xl border-white/10 flex items-center">
-              <div>
-                <p className="text-base md:text-lg leading-relaxed md:leading-[1.7] text-white/90 mb-6">
-                  С радост си припомняме как на 21 ноември 2024 г. отбелязахме 23-тата годишнина от присъствието на EOS Solutions в България, като посрещнахме в нашата компания близки клиенти и партньори, с които сме изградили траен професионализъм и доверие през годините.
-                </p>
-                <p className="text-base md:text-lg leading-relaxed md:leading-[1.7] text-white/90">
-                  Вечерта премина в приятна атмосфера, озвучена от изпълненията на Камерен състав Алегрето, които пресъздадоха любими мелодии – от класическа музика до модерни хитове.
-                </p>
-              </div>
-            </div>
-
-            <div className="md:col-span-5 glass-card p-8 rounded-3xl border-white/10 flex items-center">
-              <div>
-                <p className="text-base md:text-lg leading-relaxed md:leading-[1.7] text-white/90 mb-4">
-                  Благодарим на всички клиенти и партньори на EOS, които бяха част от празничната вечер!
-                </p>
-                <p className="text-base md:text-lg font-bold text-primary mt-4">
-                  С нетърпение чакаме да продължим заедно да прилагаме нови технологии, да откриваме нови перспективи и да поставяме нови цели.
-                </p>
-              </div>
-            </div>
+          {/* Main Story Text */}
+          <div className="glass-card p-8 md:p-10 rounded-3xl border-white/10 animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
+            <p className="text-base md:text-lg leading-relaxed md:leading-[1.7] text-white/90 mb-6">
+              С радост си припомняме вечерта на 26.06.25г., когато времето забави своя ход, а светлината на хиляди свещи изпълни с блясък градината на Гранд Хотел София по звуците на струнен квартет, който със звуците на класически и съвременен аранжимент сля традиция и съвременност.
+            </p>
+            <p className="text-base md:text-lg leading-relaxed md:leading-[1.7] text-white/90 mb-6">
+              Благодарим на всички клиенти и партньори на EOS, които бяха част от празничната вечер и всички, които са били с нас през годините.
+            </p>
+            <p className="text-base md:text-lg font-bold text-primary">
+              С нетърпение чакаме бъдещи срещи с Вас и много нови поводи за празнуване!
+            </p>
           </div>
         </div>
       </div>
