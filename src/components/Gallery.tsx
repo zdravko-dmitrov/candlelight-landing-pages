@@ -107,9 +107,7 @@ const Gallery = () => {
 
   const prevImage = () => {
     if (selectedImage !== null) {
-      setSelectedImage(
-        selectedImage === 0 ? galleryImages.length - 1 : selectedImage - 1
-      );
+      setSelectedImage(selectedImage === 0 ? galleryImages.length - 1 : selectedImage - 1);
     }
   };
 
@@ -124,13 +122,9 @@ const Gallery = () => {
         <div className="text-center mb-12 animate-fade-in">
           <div className="inline-flex items-center gap-2 mb-4">
             <Camera className="w-8 h-8 text-primary animate-glow" />
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground">
-              Галерия
-            </h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground">Галерия</h2>
           </div>
-          <p className="text-muted-foreground text-lg">
-            Моменти от нашето незабравимо празненство
-          </p>
+          <p className="text-muted-foreground text-lg">Моменти от нашето празненство</p>
         </div>
 
         {/* Gallery Grid - Responsive columns */}
