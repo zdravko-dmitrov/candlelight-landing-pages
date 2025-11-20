@@ -6,7 +6,7 @@ const EventStory = () => {
     <section id="story" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4 text-foreground leading-tight">
             Една незабравима вечер
           </h2>
           <div className="flex justify-center gap-2 mb-12">
@@ -38,24 +38,24 @@ const EventStory = () => {
 
           {/* Story Content */}
           <div className="prose prose-lg max-w-none">
-            <p className="text-xl md:text-2xl leading-relaxed md:leading-[1.8] mb-8 font-bold text-black text-center">
+            <p className="text-xl md:text-2xl leading-relaxed md:leading-[1.6] mb-8 font-bold text-foreground text-center">
               Рожденият ден е празник. 
               Рожденият ден е равносметка. Ден за пожелания и поглед към бъдещето. Ден за спомен какво е било.
             </p>
 
-            <p className="text-lg leading-relaxed text-foreground mb-8">
+            <p className="text-base md:text-lg leading-relaxed md:leading-[1.7] text-foreground mb-8">
               С радост си припомняме вечерта на 26.06.25г., когато времето забави своя ход, 
               а светлината на хиляди свещи изпълни с блясък градината на Гранд Хотел София по 
               звуците на струнен квартет, който със звуците на класически и съвременен аранжимент 
               сля традиция и съвременност.
             </p>
 
-            <p className="text-lg leading-relaxed text-foreground mt-8 text-center">
+            <p className="text-base md:text-lg leading-relaxed md:leading-[1.7] text-foreground mt-8 text-center">
               Благодарим на всички клиенти и партньори на EOS, които бяха част от празничната вечер 
               и всички, които са били с нас през годините.
             </p>
 
-            <p className="text-lg leading-relaxed text-foreground text-center font-semibold text-primary">
+            <p className="text-base md:text-lg leading-relaxed md:leading-[1.7] text-foreground text-center font-bold text-primary mt-4">
               С нетърпение чакаме бъдещи срещи с Вас и много нови поводи за празнуване!
             </p>
           </div>
