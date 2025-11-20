@@ -18,15 +18,15 @@ const HeroSection = () => {
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center">
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-primary-foreground mb-6 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 animate-fade-in leading-tight" style={{ animationDelay: "0.2s" }}>
           Symphony of Time
         </h1>
 
-        <p className="text-xl md:text-2xl text-primary-foreground/90 mb-4 animate-fade-in" style={{ animationDelay: "0.4s" }}>
+        <p className="text-xl md:text-2xl lg:text-3xl font-bold text-primary-foreground mb-4 animate-fade-in" style={{ animationDelay: "0.4s" }}>
           23 години EOS в България
         </p>
 
-        <p className="text-lg md:text-xl text-primary-foreground/80 max-w-3xl mx-auto mb-16 leading-relaxed animate-fade-in" style={{ animationDelay: "0.6s" }}>
+        <p className="text-base md:text-lg text-primary-foreground/90 max-w-3xl mx-auto mb-16 leading-relaxed md:leading-[1.7] animate-fade-in" style={{ animationDelay: "0.6s" }}>
           Благодарим на всички клиенти и партньори на EOS, които бяха част от празничната вечер
         </p>
 
