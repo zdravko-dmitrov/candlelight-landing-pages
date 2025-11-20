@@ -43,10 +43,10 @@ const ContactInfo = () => {
                 <div>
                   <h3 className="font-semibold mb-2">Телефон</h3>
                   <a 
-                    href="tel:+35929768000" 
+                    href="tel:+35929760800" 
                     className="text-muted-foreground hover:text-primary transition-colors"
                   >
-                    +359 2 976 8000
+                    +359 2 976 0800
                   </a>
                 </div>
               </div>
@@ -60,7 +60,11 @@ const ContactInfo = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold mb-2">Адрес</h3>
-                  <p className="text-muted-foreground">София, България</p>
+                  <p className="text-muted-foreground">
+                    ул. "Рачо Петков Казанджията" № 6, ет.6<br />
+                    Matrix Tower<br />
+                    1766 София, България
+                  </p>
                 </div>
               </div>
             </Card>
