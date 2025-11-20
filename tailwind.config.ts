@@ -53,9 +53,9 @@ export default {
         candle: {
           glow: "hsl(var(--candle-glow))",
         },
-        dark: {
-          bg: "hsl(var(--dark-bg))",
-          section: "hsl(var(--dark-section))",
+        light: {
+          bg: "hsl(var(--light-bg))",
+          section: "hsl(var(--light-section))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
