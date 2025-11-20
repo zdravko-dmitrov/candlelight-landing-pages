@@ -2,13 +2,13 @@ import heroCandles from "@/assets/hero-candles.jpg";
 
 const HeroSection = () => {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-dark-bg">
-      {/* Background Image with Dark Overlay */}
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-light-bg">
+      {/* Background Image with Light Overlay */}
       <div 
-        className="absolute inset-0 bg-cover bg-center opacity-60"
+        className="absolute inset-0 bg-cover bg-center opacity-50"
         style={{ backgroundImage: `url(${heroCandles})` }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-dark-bg/70 via-dark-bg/50 to-dark-bg/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-light-bg/80 via-light-bg/70 to-light-bg/90" />
       </div>
 
       {/* Ambient Glow Effects - Candlelight Simulation */}
@@ -19,7 +19,7 @@ const HeroSection = () => {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center">
         {/* Main Title with Glow Effect */}
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 animate-fade-in-up leading-tight tracking-tight" style={{ animationDelay: "0.2s" }}>
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 animate-fade-in-up leading-tight tracking-tight" style={{ animationDelay: "0.2s" }}>
           <span className="text-shadow-glow">23 години EOS в България</span>
         </h1>
 
