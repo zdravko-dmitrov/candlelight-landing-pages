@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import gallery1 from "@/assets/gallery/DSC1197.jpg";
 import gallery2 from "@/assets/gallery/DSC1244.jpg";
@@ -79,11 +79,11 @@ const Gallery = () => {
   const [itemsPerPage, setItemsPerPage] = useState(getItemsPerPage());
 
   // Update items per page on window resize
-  useState(() => {
+  useEffect(() => {
     const handleResize = () => setItemsPerPage(getItemsPerPage());
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  });
+  }, []);
 
   const totalPages = Math.ceil(galleryImages.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -156,9 +156,9 @@ const Gallery = () => {
           {Array.from({ length: totalPages }, (_, i) => (
             <button
               key={i}
-              onClick={() => goToPage(i)}
+              onClick={() => goToPage(i + 1)}
               className={`px-5 py-2.5 rounded-xl transition-all duration-300 font-medium ${
-                currentPage === i
+                currentPage === i + 1
                   ? "bg-primary text-white shadow-glow scale-105 hover:-translate-y-0.5"
                   : "glass-card text-foreground border-border hover:border-primary/30 hover:scale-105 hover:-translate-y-0.5"
               }`}

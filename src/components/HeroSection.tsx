@@ -5,16 +5,16 @@ const HeroSection = () => {
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-light-bg">
       {/* Background Image with Light Overlay */}
       <div 
-        className="absolute inset-0 bg-cover bg-center opacity-50"
+        className="absolute inset-0 bg-cover bg-center opacity-70"
         style={{ backgroundImage: `url(${heroCandles})` }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-light-bg/80 via-light-bg/70 to-light-bg/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-light-bg/50 via-light-bg/40 to-light-bg/60" />
       </div>
 
       {/* Ambient Glow Effects - Candlelight Simulation */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px] opacity-30 animate-glow" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px] opacity-30 animate-glow" style={{ animationDelay: "1.5s" }} />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[150px] opacity-20 animate-glow" style={{ animationDelay: "3s" }} />
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[80px] opacity-20 animate-glow" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[80px] opacity-20 animate-glow" style={{ animationDelay: "1.5s" }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[100px] opacity-15 animate-glow" style={{ animationDelay: "3s" }} />
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center">
