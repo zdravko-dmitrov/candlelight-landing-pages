@@ -31,10 +31,10 @@ const Footer = () => {
             </a>
             <span>•</span>
             <a 
-              href="mailto:info@bg.eos-solutions.com"
+              href="mailto:marketing@eos-matrix.bg"
               className="hover:text-primary transition-colors"
             >
-              info@bg.eos-solutions.com
+              marketing@eos-matrix.bg
             </a>
           </div>
 

@@ -25,10 +25,10 @@ const ContactInfo = () => {
                 <div>
                   <h3 className="font-semibold mb-2">Email</h3>
                   <a
-                    href="mailto:info@bg.eos-solutions.com"
+                    href="mailto:marketing@eos-matrix.bg"
                     className="text-muted-foreground hover:text-primary transition-colors"
                   >
-                    info@bg.eos-solutions.com
+                    marketing@eos-matrix.bg
                   </a>
                 </div>
               </div>
