@@ -2,7 +2,7 @@ import { Play } from "lucide-react";
 
 const VideoSection = () => {
   return (
-    <section id="video" className="py-24 bg-dark-bg relative overflow-hidden">
+    <section id="video" className="py-24 bg-light-section relative overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[150px] opacity-20 animate-glow" />
       
       <div className="container mx-auto px-4 relative z-10">
@@ -13,10 +13,10 @@ const VideoSection = () => {
                 <Play className="w-8 h-8 text-primary" />
               </div>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
               <span className="text-shadow-glow">Видео от събитието</span>
             </h2>
-            <p className="text-white/70 text-lg md:text-xl">
+            <p className="text-muted-foreground text-lg md:text-xl">
               Изживейте отново магията на нашата празнична вечер
             </p>
           </div>
@@ -24,7 +24,7 @@ const VideoSection = () => {
           <div className="relative animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
             <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 via-primary/30 to-primary/20 rounded-3xl blur-2xl opacity-50" />
             
-            <div className="relative aspect-video rounded-2xl overflow-hidden glass-card border-white/10 shadow-2xl group">
+            <div className="relative aspect-video rounded-2xl overflow-hidden glass-card border-border shadow-2xl group">
               <iframe
                 className="w-full h-full"
                 src="https://www.youtube.com/embed/m0gKN13KdIU"

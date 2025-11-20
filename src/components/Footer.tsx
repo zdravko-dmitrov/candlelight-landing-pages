@@ -3,7 +3,7 @@ import eosLogo from "@/assets/eos-logo.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-dark-section text-white py-16 border-t border-white/10 relative overflow-hidden">
+    <footer className="bg-light-bg text-foreground py-16 border-t border-border relative overflow-hidden">
       {/* Subtle Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary/5 rounded-full blur-[120px] opacity-30" />
       
@@ -17,13 +17,13 @@ const Footer = () => {
           
           <div className="flex items-center gap-3">
             <Flame className="w-5 h-5 text-primary animate-flicker" />
-            <p className="text-base text-white/80 font-medium">
+            <p className="text-base text-foreground font-medium">
               EOS Matrix Bulgaria - Changing finances for the better
             </p>
             <Flame className="w-5 h-5 text-primary animate-flicker" style={{ animationDelay: "2s" }} />
           </div>
           
-          <div className="flex flex-wrap justify-center gap-8 text-sm text-white/60">
+          <div className="flex flex-wrap justify-center gap-8 text-sm text-muted-foreground">
             <a 
               href="https://www.bg.eos-solutions.com" 
               target="_blank" 
@@ -32,7 +32,7 @@ const Footer = () => {
             >
               www.bg.eos-solutions.com
             </a>
-            <span className="text-white/30">•</span>
+            <span className="text-border">•</span>
             <a 
               href="mailto:marketing@eos-matrix.bg"
               className="hover:text-primary transition-colors"
@@ -41,7 +41,7 @@ const Footer = () => {
             </a>
           </div>
 
-          <p className="text-xs text-white/40 pt-4 border-t border-white/10 w-full max-w-md text-center">
+          <p className="text-xs text-muted-foreground pt-4 border-t border-border w-full max-w-md text-center">
             © {new Date().getFullYear()} EOS Matrix Bulgaria. All rights reserved.
           </p>
         </div>

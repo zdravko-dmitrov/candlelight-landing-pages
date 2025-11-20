@@ -40,7 +40,7 @@ const Navigation = () => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
           ? "bg-background/95 backdrop-blur-md shadow-lg border-b border-border translate-y-0"
-          : "bg-dark-bg/70 backdrop-blur-sm -translate-y-full"
+          : "bg-transparent -translate-y-full"
       }`}
     >
       <div className="container mx-auto px-4">
@@ -75,13 +75,13 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden py-4 border-t border-white/10 bg-dark-bg/95 backdrop-blur-md animate-fade-in">
+          <div className="md:hidden py-4 border-t border-border bg-background/95 backdrop-blur-md animate-fade-in">
             <div className="flex flex-col gap-2">
               {navItems.map((item) => (
                 <button
                   key={item.href}
                   onClick={() => scrollToSection(item.href)}
-                  className="text-left px-4 py-3 text-white hover:text-primary hover:bg-primary/10 transition-colors rounded-lg font-medium"
+                  className="text-left px-4 py-3 text-foreground hover:text-primary hover:bg-primary/10 transition-colors rounded-lg font-medium"
                 >
                   {item.label}
                 </button>
