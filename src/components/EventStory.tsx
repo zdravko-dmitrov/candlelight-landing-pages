@@ -38,7 +38,7 @@ const EventStory = () => {
 
           {/* Story Content */}
           <div className="prose prose-lg max-w-none">
-            <p className="text-lg leading-relaxed mb-6 font-bold text-black">
+            <p className="text-xl md:text-2xl leading-relaxed md:leading-[1.8] mb-8 font-bold text-black">
               Рожденият ден е празник. 
               Рожденият ден е равносметка. Ден за пожелания и поглед към бъдещето. Ден за спомен какво е било.
             </p>
