@@ -72,9 +72,10 @@ const ContactInfo = () => {
 
           {/* Business Hours Card */}
           <Card className="p-6 bg-primary/5 border-primary/20 mt-8 text-center">
-            <h3 className="font-semibold mb-2">Работно време</h3>
+            <h3 className="font-semibold mb-2">Работно време:</h3>
             <p className="text-muted-foreground">
-              Понеделник - Петък: 9:00 - 18:00
+              Понеделник - Петък: 08:00 ч. - 16:30 ч.<br />
+              Събота - Неделя: Затворено
             </p>
           </Card>
         </div>
