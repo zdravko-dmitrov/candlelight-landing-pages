@@ -131,8 +131,8 @@ const Gallery = () => {
         </div>
 
         <div
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-12 animate-fade-in-up"
-          style={{ animationDelay: "0.2s" }}
+          key={currentPage}
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-12 animate-fade-in"
         >
           {currentImages.map((image, index) => (
             <div
