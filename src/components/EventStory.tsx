@@ -38,8 +38,8 @@ const EventStory = () => {
 
           {/* Story Content */}
           <div className="prose prose-lg max-w-none">
-            <p className="text-lg leading-relaxed text-foreground mb-6">
-              <span className="text-2xl text-primary font-serif">Р</span>ожденият ден е празник. 
+            <p className="text-lg leading-relaxed mb-6 font-bold text-black">
+              Рожденият ден е празник. 
               Рожденият ден е равносметка. Ден за пожелания и поглед към бъдещето. Ден за спомен какво е било.
             </p>
 
