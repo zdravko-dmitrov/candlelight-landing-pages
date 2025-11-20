@@ -116,18 +116,13 @@ const Gallery = () => {
   };
 
   return (
-    <section id="gallery" className="py-24 bg-dark-section relative overflow-hidden">
-      <div className="absolute top-20 left-1/3 w-96 h-96 bg-primary/10 rounded-full blur-[120px] opacity-20 animate-glow" />
-      <div
-        className="absolute bottom-20 right-1/3 w-96 h-96 bg-primary/10 rounded-full blur-[120px] opacity-20 animate-glow"
-        style={{ animationDelay: "2s" }}
-      />
-      <div className="container mx-auto px-4 relative z-10">
+    <section id="gallery" className="py-24 bg-white relative">
+      <div className="container mx-auto px-4">
         <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-            <span className="text-shadow-glow">Снимки от събитието</span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
+            Снимки от събитието
           </h2>
-          <p className="text-white/70 text-lg md:text-xl">Моменти от нашата празнична вечер</p>
+          <p className="text-gray-600 text-lg md:text-xl">Моменти от нашата празнична вечер</p>
         </div>
 
         <div
@@ -137,7 +132,7 @@ const Gallery = () => {
           {currentImages.map((image, index) => (
             <div
               key={startIndex + index}
-              className="relative aspect-square overflow-hidden rounded-xl cursor-pointer group glass-card border-white/10"
+              className="relative aspect-square overflow-hidden rounded-xl cursor-pointer group bg-white shadow-md hover:shadow-xl border border-border"
               onClick={() => openLightbox(startIndex + index)}
             >
               <img
@@ -146,7 +141,7 @@ const Gallery = () => {
                 className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-dark-bg/80 via-dark-bg/0 to-dark-bg/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="absolute inset-0 border-2 border-primary/0 group-hover:border-primary/50 rounded-xl transition-all duration-300" />
             </div>
           ))}
@@ -156,11 +151,11 @@ const Gallery = () => {
           {Array.from({ length: totalPages }, (_, i) => (
             <button
               key={i}
-              onClick={() => goToPage(i)}
+              onClick={() => goToPage(i + 1)}
               className={`px-5 py-2.5 rounded-xl transition-all duration-300 font-medium ${
-                currentPage === i
-                  ? "bg-primary text-white shadow-glow scale-105 hover:-translate-y-0.5"
-                  : "glass-card text-white/70 hover:text-white border-white/10 hover:border-primary/30 hover:scale-105 hover:-translate-y-0.5"
+                currentPage === i + 1
+                  ? "bg-primary text-white shadow-lg scale-105 hover:shadow-xl hover:-translate-y-0.5"
+                  : "bg-white text-gray-700 border border-gray-300 hover:text-primary hover:border-primary/50 hover:scale-105 hover:-translate-y-0.5 shadow-sm"
               }`}
             >
               {i + 1}
@@ -168,10 +163,10 @@ const Gallery = () => {
           ))}
         </div>
 
-        {/* Disclaimer with Glassmorphism */}
+        {/* Disclaimer */}
         <div className="mt-4 text-center animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
-          <div className="glass-card max-w-2xl mx-auto p-6 rounded-2xl border-white/10">
-            <p className="text-sm text-white/70">
+          <div className="bg-gray-50 max-w-2xl mx-auto p-6 rounded-2xl border border-gray-200">
+            <p className="text-sm text-gray-600">
               За персонални снимки от празненството, моля, обърнете се към{" "}
               <a
                 href="mailto:marketing@eos-matrix.bg"
@@ -183,12 +178,12 @@ const Gallery = () => {
           </div>
         </div>
 
-        {/* Lightbox Modal with Enhanced Dark Theme */}
+        {/* Lightbox Modal */}
         {selectedImage !== null && (
-          <div className="fixed inset-0 z-50 bg-dark-bg/95 backdrop-blur-xl flex items-center justify-center p-4 animate-fade-in">
+          <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in">
             <button
               onClick={closeLightbox}
-              className="absolute top-4 right-4 text-white hover:text-primary transition-colors p-2 rounded-full glass-card hover:scale-110"
+              className="absolute top-4 right-4 text-white hover:text-primary transition-colors p-2 rounded-full bg-white/10 hover:bg-white/20 hover:scale-110"
               aria-label="Затвори галерия"
             >
               <X className="w-8 h-8" />
@@ -196,7 +191,7 @@ const Gallery = () => {
 
             <button
               onClick={prevImage}
-              className="absolute left-4 text-white hover:text-primary transition-colors p-2 rounded-full glass-card hover:scale-110"
+              className="absolute left-4 text-white hover:text-primary transition-colors p-2 rounded-full bg-white/10 hover:bg-white/20 hover:scale-110"
               aria-label="Предишна снимка"
             >
               <ChevronLeft className="w-8 h-8" />
@@ -204,20 +199,21 @@ const Gallery = () => {
 
             <button
               onClick={nextImage}
-              className="absolute right-4 text-white hover:text-primary transition-colors p-2 rounded-full glass-card hover:scale-110"
+              className="absolute right-4 text-white hover:text-primary transition-colors p-2 rounded-full bg-white/10 hover:bg-white/20 hover:scale-110"
               aria-label="Следваща снимка"
             >
               <ChevronRight className="w-8 h-8" />
             </button>
 
-            <img
-              src={galleryImages[selectedImage].src}
-              alt={galleryImages[selectedImage].alt}
-              className="max-w-full max-h-[90vh] object-contain rounded-lg animate-scale-in shadow-glow"
-            />
-
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white glass-card px-6 py-3 rounded-full backdrop-blur-md">
-              {selectedImage + 1} / {galleryImages.length}
+            <div className="max-w-7xl max-h-[90vh] relative">
+              <img
+                src={galleryImages[selectedImage].src}
+                alt={galleryImages[selectedImage].alt}
+                className="max-w-full max-h-[90vh] object-contain rounded-xl shadow-2xl"
+              />
+              <p className="text-center text-white/80 mt-4 text-sm">
+                {selectedImage + 1} / {galleryImages.length}
+              </p>
             </div>
           </div>
         )}
