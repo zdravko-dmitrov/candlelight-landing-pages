@@ -54,18 +54,20 @@ const EventStory = () => {
             </div>
           </div>
 
-          {/* Main Story - Broken Grid Layout */}
+          {/* Main Story - Equal Height Grid */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
-            <div className="md:col-span-7 glass-card p-8 md:p-10 rounded-3xl border-white/10">
-              <p className="text-base md:text-lg leading-relaxed md:leading-[1.7] text-white/90 mb-6">
-                С радост си припомняме как на 21 ноември 2024 г. отбелязахме 23-тата годишнина от присъствието на EOS Solutions в България, като посрещнахме в нашата компания близки клиенти и партньори, с които сме изградили траен професионализъм и доверие през годините.
-              </p>
-              <p className="text-base md:text-lg leading-relaxed md:leading-[1.7] text-white/90">
-                Вечерта премина в приятна атмосфера, озвучена от изпълненията на Камерен състав Алегрето, които пресъздадоха любими мелодии – от класическа музика до модерни хитове.
-              </p>
+            <div className="md:col-span-7 glass-card p-8 md:p-10 rounded-3xl border-white/10 flex items-center">
+              <div>
+                <p className="text-base md:text-lg leading-relaxed md:leading-[1.7] text-white/90 mb-6">
+                  С радост си припомняме как на 21 ноември 2024 г. отбелязахме 23-тата годишнина от присъствието на EOS Solutions в България, като посрещнахме в нашата компания близки клиенти и партньори, с които сме изградили траен професионализъм и доверие през годините.
+                </p>
+                <p className="text-base md:text-lg leading-relaxed md:leading-[1.7] text-white/90">
+                  Вечерта премина в приятна атмосфера, озвучена от изпълненията на Камерен състав Алегрето, които пресъздадоха любими мелодии – от класическа музика до модерни хитове.
+                </p>
+              </div>
             </div>
 
-            <div className="md:col-span-5 glass-card p-8 rounded-3xl border-white/10 md:mt-12 flex items-center">
+            <div className="md:col-span-5 glass-card p-8 rounded-3xl border-white/10 flex items-center">
               <div>
                 <p className="text-base md:text-lg leading-relaxed md:leading-[1.7] text-white/90 mb-4">
                   Благодарим на всички клиенти и партньори на EOS, които бяха част от празничната вечер!
