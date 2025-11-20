@@ -40,7 +40,7 @@ const Navigation = () => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
           ? "bg-background/95 backdrop-blur-md shadow-lg border-b border-border"
-          : "bg-transparent"
+          : "bg-dark-bg/50 backdrop-blur-sm"
       }`}
     >
       <div className="container mx-auto px-4">
@@ -52,7 +52,7 @@ const Navigation = () => {
                 key={item.href}
                 variant="ghost"
                 onClick={() => scrollToSection(item.href)}
-                className="text-foreground hover:text-primary hover:bg-primary/10 transition-colors px-4 py-2 font-medium"
+                className="text-white hover:text-primary hover:bg-primary/10 transition-colors px-4 py-2 font-medium"
               >
                 {item.label}
               </Button>
@@ -62,7 +62,7 @@ const Navigation = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-foreground hover:text-primary transition-colors"
+            className="md:hidden p-2 text-white hover:text-primary transition-colors"
             aria-label="Toggle menu"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -71,13 +71,13 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden py-4 border-t border-border bg-background/95 backdrop-blur-md animate-fade-in">
+          <div className="md:hidden py-4 border-t border-white/10 bg-dark-bg/95 backdrop-blur-md animate-fade-in">
             <div className="flex flex-col gap-2">
               {navItems.map((item) => (
                 <button
                   key={item.href}
                   onClick={() => scrollToSection(item.href)}
-                  className="text-left px-4 py-3 text-foreground hover:text-primary hover:bg-primary/10 transition-colors rounded-lg font-medium"
+                  className="text-left px-4 py-3 text-white hover:text-primary hover:bg-primary/10 transition-colors rounded-lg font-medium"
                 >
                   {item.label}
                 </button>
