@@ -118,16 +118,22 @@ const Gallery = () => {
   return (
     <section id="gallery" className="py-24 bg-dark-section relative overflow-hidden">
       <div className="absolute top-20 left-1/3 w-96 h-96 bg-primary/10 rounded-full blur-[120px] opacity-20 animate-glow" />
-      <div className="absolute bottom-20 right-1/3 w-96 h-96 bg-primary/10 rounded-full blur-[120px] opacity-20 animate-glow" style={{ animationDelay: "2s" }} />
+      <div
+        className="absolute bottom-20 right-1/3 w-96 h-96 bg-primary/10 rounded-full blur-[120px] opacity-20 animate-glow"
+        style={{ animationDelay: "2s" }}
+      />
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
             <span className="text-shadow-glow">Снимки от събитието</span>
           </h2>
-          <p className="text-white/70 text-lg md:text-xl">Моменти от нашата незабравима празнична вечер</p>
+          <p className="text-white/70 text-lg md:text-xl">Моменти от нашата празнична вечер</p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-12 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
+        <div
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-12 animate-fade-in-up"
+          style={{ animationDelay: "0.2s" }}
+        >
           {currentImages.map((image, index) => (
             <div
               key={startIndex + index}
@@ -167,7 +173,10 @@ const Gallery = () => {
           <div className="glass-card max-w-2xl mx-auto p-6 rounded-2xl border-white/10">
             <p className="text-sm text-white/70">
               За персонални снимки от празненството, моля, обърнете се към{" "}
-              <a href="mailto:marketing@eos-matrix.bg" className="text-primary hover:text-primary/80 transition-colors underline">
+              <a
+                href="mailto:marketing@eos-matrix.bg"
+                className="text-primary hover:text-primary/80 transition-colors underline"
+              >
                 marketing@eos-matrix.bg
               </a>
             </p>
