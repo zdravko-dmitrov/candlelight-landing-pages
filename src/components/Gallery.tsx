@@ -189,6 +189,17 @@ const Gallery = () => {
           </div>
         )}
 
+        {/* Disclaimer */}
+        <p className="text-center text-sm text-muted-foreground mt-8">
+          За персонални снимки от празненството, моля, обърнете се към{" "}
+          <a 
+            href="mailto:marketing@eos-matrix.bg"
+            className="text-primary hover:underline transition-all"
+          >
+            marketing@eos-matrix.bg
+          </a>
+        </p>
+
         {/* Lightbox */}
         {selectedImage !== null && (
           <div className="fixed inset-0 z-50 bg-dark-bg/95 flex items-center justify-center p-4 animate-fade-in">
