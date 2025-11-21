@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogOverlay,
+} from "@/components/ui/dialog";
 import gallery1 from "@/assets/gallery/DSC1197.jpg";
 import gallery2 from "@/assets/gallery/DSC1244.jpg";
 import gallery3 from "@/assets/gallery/DSC1260.jpg";
@@ -84,6 +89,20 @@ const Gallery = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  // Keyboard navigation for lightbox
+  useEffect(() => {
+    if (selectedImage === null) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") prevImage();
+      if (e.key === "ArrowRight") nextImage();
+      if (e.key === "Escape") closeLightbox();
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedImage]);
 
   const totalPages = Math.ceil(galleryImages.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -183,44 +202,56 @@ const Gallery = () => {
           </div>
         </div>
 
-        {/* Lightbox Modal with Enhanced Dark Theme */}
-        {selectedImage !== null && (
-          <div className="fixed inset-0 z-50 bg-background/95 backdrop-blur-xl flex items-center justify-center p-4 animate-fade-in">
-            <button
-              onClick={closeLightbox}
-              className="absolute top-4 right-4 text-foreground hover:text-primary transition-colors p-2 rounded-full glass-card hover:scale-110"
-              aria-label="Затвори галерия"
-            >
-              <X className="w-8 h-8" />
-            </button>
+        {/* Lightbox Modal */}
+        <Dialog open={selectedImage !== null} onOpenChange={(open) => !open && closeLightbox()}>
+          <DialogOverlay className="bg-black/90 backdrop-blur-md" />
+          <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 border-0 bg-transparent shadow-none">
+            <div className="relative w-full h-full flex items-center justify-center">
+              {/* Close Button */}
+              <button
+                onClick={closeLightbox}
+                className="absolute top-4 right-4 z-50 text-white hover:text-primary transition-colors p-3 rounded-full bg-black/50 backdrop-blur-md hover:scale-110 hover:bg-black/70"
+                aria-label="Затвори галерия"
+              >
+                <X className="w-6 h-6" />
+              </button>
 
-            <button
-              onClick={prevImage}
-              className="absolute left-4 text-foreground hover:text-primary transition-colors p-2 rounded-full glass-card hover:scale-110"
-              aria-label="Предишна снимка"
-            >
-              <ChevronLeft className="w-8 h-8" />
-            </button>
+              {/* Previous Button */}
+              <button
+                onClick={prevImage}
+                className="absolute left-4 z-50 text-white hover:text-primary transition-colors p-3 rounded-full bg-black/50 backdrop-blur-md hover:scale-110 hover:bg-black/70"
+                aria-label="Предишна снимка"
+              >
+                <ChevronLeft className="w-8 h-8" />
+              </button>
 
-            <button
-              onClick={nextImage}
-              className="absolute right-4 text-foreground hover:text-primary transition-colors p-2 rounded-full glass-card hover:scale-110"
-              aria-label="Следваща снимка"
-            >
-              <ChevronRight className="w-8 h-8" />
-            </button>
+              {/* Next Button */}
+              <button
+                onClick={nextImage}
+                className="absolute right-4 z-50 text-white hover:text-primary transition-colors p-3 rounded-full bg-black/50 backdrop-blur-md hover:scale-110 hover:bg-black/70"
+                aria-label="Следваща снимка"
+              >
+                <ChevronRight className="w-8 h-8" />
+              </button>
 
-            <img
-              src={galleryImages[selectedImage].src}
-              alt={galleryImages[selectedImage].alt}
-              className="max-w-full max-h-[90vh] object-contain rounded-lg animate-scale-in shadow-glow"
-            />
+              {/* Image */}
+              {selectedImage !== null && (
+                <img
+                  src={galleryImages[selectedImage].src}
+                  alt={galleryImages[selectedImage].alt}
+                  className="max-w-full max-h-[85vh] object-contain rounded-lg animate-scale-in"
+                />
+              )}
 
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-foreground glass-card px-6 py-3 rounded-full backdrop-blur-md">
-              {selectedImage + 1} / {galleryImages.length}
+              {/* Image Counter */}
+              {selectedImage !== null && (
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white bg-black/50 backdrop-blur-md px-6 py-3 rounded-full font-medium">
+                  {selectedImage + 1} / {galleryImages.length}
+                </div>
+              )}
             </div>
-          </div>
-        )}
+          </DialogContent>
+        </Dialog>
       </div>
     </section>
   );
