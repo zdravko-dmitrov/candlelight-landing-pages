@@ -1,4 +1,3 @@
-import { Flame } from "lucide-react";
 import eosLogo from "@/assets/eos-logo.png";
 
 const Footer = () => {
@@ -15,13 +14,9 @@ const Footer = () => {
             className="h-14 opacity-90"
           />
           
-          <div className="flex items-center gap-3">
-            <Flame className="w-5 h-5 text-primary animate-flicker" />
-            <p className="text-base text-foreground font-medium">
-              EOS Matrix Bulgaria - Changing finances for the better
-            </p>
-            <Flame className="w-5 h-5 text-primary animate-flicker" style={{ animationDelay: "2s" }} />
-          </div>
+          <p className="text-base text-foreground font-medium">
+            EOS Matrix Bulgaria - Changing finances for the better
+          </p>
           
           <div className="flex flex-wrap justify-center gap-8 text-sm text-muted-foreground">
             <a 
