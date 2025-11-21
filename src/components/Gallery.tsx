@@ -149,7 +149,7 @@ const Gallery = () => {
             <div
               key={startIndex + index}
               className="relative aspect-square overflow-hidden rounded-xl cursor-pointer group glass-card border-border"
-              onClick={() => openLightbox(startIndex + index)}
+              onClick={() => openLightbox(index)}
             >
               <img
                 src={image.src}
