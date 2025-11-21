@@ -90,6 +90,46 @@ const Gallery = () => {
     window.scrollTo({ top: document.getElementById("gallery")?.offsetTop, behavior: "smooth" });
   };
 
+  // Generate pagination numbers with ellipsis for mobile
+  const getPaginationRange = () => {
+    const maxVisible = window.innerWidth < 768 ? 5 : 7; // Show 5 on mobile, 7 on desktop
+    const pages: (number | string)[] = [];
+    
+    if (totalPages <= maxVisible) {
+      // Show all pages if total is less than max visible
+      return Array.from({ length: totalPages }, (_, i) => i + 1);
+    }
+
+    // Always show first page
+    pages.push(1);
+
+    if (currentPage <= 3) {
+      // Near the start
+      for (let i = 2; i <= Math.min(maxVisible - 1, totalPages - 1); i++) {
+        pages.push(i);
+      }
+      pages.push('...');
+      pages.push(totalPages);
+    } else if (currentPage >= totalPages - 2) {
+      // Near the end
+      pages.push('...');
+      for (let i = Math.max(2, totalPages - maxVisible + 2); i <= totalPages; i++) {
+        pages.push(i);
+      }
+    } else {
+      // In the middle
+      pages.push('...');
+      const range = Math.floor((maxVisible - 4) / 2);
+      for (let i = currentPage - range; i <= currentPage + range; i++) {
+        pages.push(i);
+      }
+      pages.push('...');
+      pages.push(totalPages);
+    }
+
+    return pages;
+  };
+
   return (
     <section id="gallery" className="py-24 bg-light-section relative overflow-hidden">
       <div className="absolute top-20 left-1/3 w-96 h-96 bg-primary/10 rounded-full blur-[120px] opacity-20 animate-glow" />
@@ -127,19 +167,28 @@ const Gallery = () => {
           ))}
         </div>
 
-        <div className="flex justify-center items-center gap-2 mb-12">
-          {Array.from({ length: totalPages }, (_, i) => (
-            <button
-              key={i}
-              onClick={() => goToPage(i + 1)}
-              className={`px-5 py-2.5 rounded-xl transition-all duration-300 font-medium ${
-                currentPage === i + 1
-                  ? "bg-primary text-white shadow-glow scale-105 hover:-translate-y-0.5"
-                  : "glass-card text-foreground border-border hover:border-primary/30 hover:scale-105 hover:-translate-y-0.5"
-              }`}
-            >
-              {i + 1}
-            </button>
+        <div className="flex justify-center items-center gap-2 mb-12 flex-wrap">
+          {getPaginationRange().map((page, index) => (
+            typeof page === 'number' ? (
+              <button
+                key={`page-${page}`}
+                onClick={() => goToPage(page)}
+                className={`px-4 py-2 md:px-5 md:py-2.5 rounded-xl transition-all duration-300 font-medium ${
+                  currentPage === page
+                    ? "bg-primary text-white shadow-glow scale-105 hover:-translate-y-0.5"
+                    : "glass-card text-foreground border-border hover:border-primary/30 hover:scale-105 hover:-translate-y-0.5"
+                }`}
+              >
+                {page}
+              </button>
+            ) : (
+              <span
+                key={`ellipsis-${index}`}
+                className="px-2 py-2 text-muted-foreground"
+              >
+                {page}
+              </span>
+            )
           ))}
         </div>
 
