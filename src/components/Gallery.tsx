@@ -5,63 +5,19 @@ import {
   DialogContent,
   DialogOverlay,
 } from "@/components/ui/dialog";
-import gallery1 from "@/assets/gallery/DSC1197.jpg";
-import gallery2 from "@/assets/gallery/DSC1244.jpg";
-import gallery3 from "@/assets/gallery/DSC1260.jpg";
-import gallery4 from "@/assets/gallery/DSC1265.jpg";
-import gallery5 from "@/assets/gallery/DSC1266.jpg";
-import gallery6 from "@/assets/gallery/DSC1270.jpg";
-import gallery7 from "@/assets/gallery/DSC1271.jpg";
-import gallery8 from "@/assets/gallery/DSC1194.jpg";
-import gallery9 from "@/assets/gallery/DSC1271-2.jpg";
-import gallery10 from "@/assets/gallery/DSC1279.jpg";
-import gallery11 from "@/assets/gallery/DSC1284.jpg";
-import gallery12 from "@/assets/gallery/DSC1304.jpg";
-import gallery13 from "@/assets/gallery/DSC1305.jpg";
-import gallery14 from "@/assets/gallery/DSC1319.jpg";
-import gallery15 from "@/assets/gallery/DSC1331.jpg";
-import gallery16 from "@/assets/gallery/DSC1333.jpg";
-import gallery17 from "@/assets/gallery/DSC1335.jpg";
-import gallery18 from "@/assets/gallery/DSC1347.jpg";
-import gallery19 from "@/assets/gallery/DSC1350.jpg";
-import gallery20 from "@/assets/gallery/DSC1355.jpg";
-import gallery21 from "@/assets/gallery/DSC1359.jpg";
-import gallery22 from "@/assets/gallery/DSC1375.jpg";
-import gallery23 from "@/assets/gallery/DSC1378.jpg";
-import gallery24 from "@/assets/gallery/DSC1382.jpg";
-import gallery25 from "@/assets/gallery/DSC1384.jpg";
-import gallery26 from "@/assets/gallery/DSC1388.jpg";
-import gallery27 from "@/assets/gallery/DSC1396.jpg";
 
-const galleryImages = [
-  { src: gallery8, alt: "EOS лого с декоративни свещи" },
-  { src: gallery9, alt: "Екип на събитието" },
-  { src: gallery10, alt: "Разговор между гости" },
-  { src: gallery11, alt: "Бизнес срещи на събитието" },
-  { src: gallery12, alt: "Групова снимка на екипа" },
-  { src: gallery13, alt: "Групова снимка на екипа" },
-  { src: gallery14, alt: "Споделяне на моменти" },
-  { src: gallery15, alt: "Лидери на EOS" },
-  { src: gallery16, alt: "Symphony of Time събития" },
-  { src: gallery17, alt: "Приветствия и поздравления" },
-  { src: gallery18, alt: "Поздравления с цветя" },
-  { src: gallery19, alt: "Празнични букети" },
-  { src: gallery20, alt: "Топла среща" },
-  { src: gallery21, alt: "Приятелски разговори" },
-  { src: gallery22, alt: "Гости на събитието" },
-  { src: gallery23, alt: "Екипна снимка" },
-  { src: gallery24, alt: "Колеги на EOS" },
-  { src: gallery25, alt: "Сърдечни поздрави" },
-  { src: gallery26, alt: "Бизнес партньори" },
-  { src: gallery27, alt: "Празнична атмосфера" },
-  { src: gallery1, alt: "Композиция от свещи на събитието на EOS" },
-  { src: gallery2, alt: "Подаръчни торби с брандинг на EOS" },
-  { src: gallery3, alt: "Разговор между гости на събитието" },
-  { src: gallery4, alt: "Официално посрещане на входа" },
-  { src: gallery5, alt: "Гости на събитието" },
-  { src: gallery6, alt: "Празнични моменти" },
-  { src: gallery7, alt: "Групова снимка на 23-та годишнина на EOS" },
-];
+// Dynamically import all images from the gallery folder
+const galleryModules = import.meta.glob('@/assets/gallery/*.{jpg,jpeg,png,webp}', { eager: true });
+
+// Convert the imported modules to an array of image objects
+const galleryImages = Object.entries(galleryModules)
+  .map(([path, module]: [string, any]) => ({
+    src: module.default,
+    alt: "Снимка от събитието Symphony of Time",
+    // Extract filename for sorting if needed
+    filename: path.split('/').pop() || ''
+  }))
+  .sort((a, b) => a.filename.localeCompare(b.filename)); // Sort alphabetically by filename
 
 // Pagination settings per device
 const ITEMS_PER_PAGE = {
