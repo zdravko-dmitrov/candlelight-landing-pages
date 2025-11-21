@@ -103,25 +103,30 @@ const Gallery = () => {
     // Always show first page
     pages.push(1);
 
-    if (currentPage <= 3) {
-      // Near the start
+    const sidePages = Math.floor((maxVisible - 3) / 2); // Pages to show on each side of current
+
+    if (currentPage <= sidePages + 2) {
+      // Near the start - show first few pages
       for (let i = 2; i <= Math.min(maxVisible - 1, totalPages - 1); i++) {
         pages.push(i);
       }
-      pages.push('...');
+      if (maxVisible < totalPages) {
+        pages.push('...');
+      }
       pages.push(totalPages);
-    } else if (currentPage >= totalPages - 2) {
-      // Near the end
+    } else if (currentPage >= totalPages - sidePages - 1) {
+      // Near the end - show last few pages
       pages.push('...');
       for (let i = Math.max(2, totalPages - maxVisible + 2); i <= totalPages; i++) {
         pages.push(i);
       }
     } else {
-      // In the middle
+      // In the middle - show current page with context
       pages.push('...');
-      const range = Math.floor((maxVisible - 4) / 2);
-      for (let i = currentPage - range; i <= currentPage + range; i++) {
-        pages.push(i);
+      for (let i = currentPage - sidePages; i <= currentPage + sidePages; i++) {
+        if (i > 1 && i < totalPages) {
+          pages.push(i);
+        }
       }
       pages.push('...');
       pages.push(totalPages);
