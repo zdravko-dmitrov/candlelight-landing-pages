@@ -14,11 +14,11 @@ const Footer = () => {
             className="h-14 opacity-90"
           />
           
-          <p className="text-base text-foreground font-medium">
+          <p className="text-base text-foreground font-medium text-center">
             EOS Matrix Bulgaria - Changing finances for the better
           </p>
           
-          <div className="flex flex-wrap justify-center gap-8 text-sm text-muted-foreground">
+          <div className="flex flex-wrap justify-center gap-4 md:gap-8 text-sm text-muted-foreground text-center">
             <a 
               href="https://www.bg.eos-solutions.com" 
               target="_blank" 
@@ -27,7 +27,7 @@ const Footer = () => {
             >
               www.bg.eos-solutions.com
             </a>
-            <span className="text-border">•</span>
+            <span className="text-border hidden md:inline">•</span>
             <a 
               href="mailto:marketing@eos-matrix.bg"
               className="hover:text-primary transition-colors"
