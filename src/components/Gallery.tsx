@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-react";
 import {
   Dialog,
   DialogContent,
   DialogOverlay,
 } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 
 // Dynamically import all images from the gallery folder
 const galleryModules = import.meta.glob('@/assets/gallery/*.{jpg,jpeg,png,webp}', { eager: true });
@@ -29,6 +30,7 @@ const ITEMS_PER_PAGE = {
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [jumpToPageInput, setJumpToPageInput] = useState("");
 
   // Determine items per page based on screen size
   const getItemsPerPage = () => {
@@ -86,8 +88,19 @@ const Gallery = () => {
   };
 
   const goToPage = (page: number) => {
-    setCurrentPage(page);
-    window.scrollTo({ top: document.getElementById("gallery")?.offsetTop, behavior: "smooth" });
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+      window.scrollTo({ top: document.getElementById("gallery")?.offsetTop, behavior: "smooth" });
+    }
+  };
+
+  const handleJumpToPage = (e: React.FormEvent) => {
+    e.preventDefault();
+    const pageNum = parseInt(jumpToPageInput);
+    if (!isNaN(pageNum) && pageNum >= 1 && pageNum <= totalPages) {
+      goToPage(pageNum);
+      setJumpToPageInput("");
+    }
   };
 
   // Generate pagination numbers with ellipsis for mobile
@@ -172,29 +185,96 @@ const Gallery = () => {
           ))}
         </div>
 
-        <div className="flex justify-center items-center gap-2 mb-12 flex-wrap">
-          {getPaginationRange().map((page, index) => (
-            typeof page === 'number' ? (
-              <button
-                key={`page-${page}`}
-                onClick={() => goToPage(page)}
-                className={`px-4 py-2 md:px-5 md:py-2.5 rounded-xl transition-all duration-300 font-medium ${
-                  currentPage === page
-                    ? "bg-primary text-white shadow-glow scale-105 hover:-translate-y-0.5"
-                    : "glass-card text-foreground border-border hover:border-primary/30 hover:scale-105 hover:-translate-y-0.5"
-                }`}
-              >
-                {page}
-              </button>
-            ) : (
-              <span
-                key={`ellipsis-${index}`}
-                className="px-2 py-2 text-muted-foreground"
-              >
-                {page}
-              </span>
-            )
-          ))}
+        {/* Pagination Controls */}
+        <div className="flex flex-col items-center gap-6 mb-12">
+          <div className="flex justify-center items-center gap-2 flex-wrap">
+            {/* First Page Button */}
+            <button
+              onClick={() => goToPage(1)}
+              disabled={currentPage === 1}
+              className="p-2 rounded-xl transition-all duration-300 glass-card text-foreground border-border hover:border-primary/30 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+              aria-label="Първа страница"
+            >
+              <ChevronsLeft className="w-5 h-5" />
+            </button>
+
+            {/* Previous Page Button */}
+            <button
+              onClick={() => goToPage(currentPage - 1)}
+              disabled={currentPage === 1}
+              className="p-2 rounded-xl transition-all duration-300 glass-card text-foreground border-border hover:border-primary/30 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+              aria-label="Предишна страница"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+
+            {/* Page Numbers */}
+            {getPaginationRange().map((page, index) => (
+              typeof page === 'number' ? (
+                <button
+                  key={`page-${page}`}
+                  onClick={() => goToPage(page)}
+                  className={`px-4 py-2 md:px-5 md:py-2.5 rounded-xl transition-all duration-300 font-medium ${
+                    currentPage === page
+                      ? "bg-primary text-white shadow-glow scale-105 hover:-translate-y-0.5"
+                      : "glass-card text-foreground border-border hover:border-primary/30 hover:scale-105 hover:-translate-y-0.5"
+                  }`}
+                >
+                  {page}
+                </button>
+              ) : (
+                <span
+                  key={`ellipsis-${index}`}
+                  className="px-2 py-2 text-muted-foreground"
+                >
+                  {page}
+                </span>
+              )
+            ))}
+
+            {/* Next Page Button */}
+            <button
+              onClick={() => goToPage(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              className="p-2 rounded-xl transition-all duration-300 glass-card text-foreground border-border hover:border-primary/30 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+              aria-label="Следваща страница"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+
+            {/* Last Page Button */}
+            <button
+              onClick={() => goToPage(totalPages)}
+              disabled={currentPage === totalPages}
+              className="p-2 rounded-xl transition-all duration-300 glass-card text-foreground border-border hover:border-primary/30 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+              aria-label="Последна страница"
+            >
+              <ChevronsRight className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* Jump to Page Input */}
+          <form onSubmit={handleJumpToPage} className="flex items-center gap-3">
+            <label htmlFor="jumpToPage" className="text-sm font-medium text-foreground whitespace-nowrap">
+              Отиди на страница:
+            </label>
+            <Input
+              id="jumpToPage"
+              type="number"
+              min="1"
+              max={totalPages}
+              value={jumpToPageInput}
+              onChange={(e) => setJumpToPageInput(e.target.value)}
+              placeholder={`1-${totalPages}`}
+              className="w-24 glass-card border-border focus:border-primary"
+            />
+            <button
+              type="submit"
+              className="px-4 py-2 rounded-xl transition-all duration-300 bg-primary text-white hover:shadow-glow hover:scale-105"
+            >
+              Отиди
+            </button>
+          </form>
         </div>
 
         {/* Disclaimer with Glassmorphism */}
