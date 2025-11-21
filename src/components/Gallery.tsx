@@ -1,6 +1,10 @@
-import { useState } from "react";
-import { X, ChevronLeft, ChevronRight, Camera } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogOverlay,
+} from "@/components/ui/dialog";
 import gallery1 from "@/assets/gallery/DSC1197.jpg";
 import gallery2 from "@/assets/gallery/DSC1244.jpg";
 import gallery3 from "@/assets/gallery/DSC1260.jpg";
@@ -80,11 +84,25 @@ const Gallery = () => {
   const [itemsPerPage, setItemsPerPage] = useState(getItemsPerPage());
 
   // Update items per page on window resize
-  useState(() => {
+  useEffect(() => {
     const handleResize = () => setItemsPerPage(getItemsPerPage());
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  });
+  }, []);
+
+  // Keyboard navigation for lightbox
+  useEffect(() => {
+    if (selectedImage === null) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") prevImage();
+      if (e.key === "ArrowRight") nextImage();
+      if (e.key === "Escape") closeLightbox();
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedImage]);
 
   const totalPages = Math.ceil(galleryImages.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -107,9 +125,7 @@ const Gallery = () => {
 
   const prevImage = () => {
     if (selectedImage !== null) {
-      setSelectedImage(
-        selectedImage === 0 ? galleryImages.length - 1 : selectedImage - 1
-      );
+      setSelectedImage(selectedImage === 0 ? galleryImages.length - 1 : selectedImage - 1);
     }
   };
 
@@ -119,120 +135,123 @@ const Gallery = () => {
   };
 
   return (
-    <section id="gallery" className="py-20 bg-muted/30">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12 animate-fade-in">
-          <div className="inline-flex items-center gap-2 mb-4">
-            <Camera className="w-8 h-8 text-primary animate-glow" />
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground">
-              Галерия
-            </h2>
-          </div>
-          <p className="text-muted-foreground text-lg">
-            Моменти от нашето незабравимо празненство
-          </p>
+    <section id="gallery" className="py-24 bg-light-section relative overflow-hidden">
+      <div className="absolute top-20 left-1/3 w-96 h-96 bg-primary/10 rounded-full blur-[120px] opacity-20 animate-glow" />
+      <div
+        className="absolute bottom-20 right-1/3 w-96 h-96 bg-primary/10 rounded-full blur-[120px] opacity-20 animate-glow"
+        style={{ animationDelay: "2s" }}
+      />
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center mb-16 animate-fade-in-up">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
+            <span className="text-shadow-glow">Снимки от събитието</span>
+          </h2>
+          <p className="text-muted-foreground text-lg md:text-xl">Моменти от нашата празнична вечер</p>
         </div>
 
-        {/* Gallery Grid - Responsive columns */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto mb-12">
+        <div
+          key={currentPage}
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-12 animate-fade-in"
+        >
           {currentImages.map((image, index) => (
             <div
               key={startIndex + index}
-              className="group relative overflow-hidden rounded-lg cursor-pointer aspect-[4/3] animate-fade-in hover-scale"
-              style={{ animationDelay: `${index * 0.1}s` }}
-              onClick={() => openLightbox(index)}
+              className="relative aspect-square overflow-hidden rounded-xl cursor-pointer group glass-card border-border"
+              onClick={() => openLightbox(startIndex + index)}
             >
               <img
                 src={image.src}
                 alt={image.alt}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
+                loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-dark-bg/80 via-dark-bg/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                <p className="text-foreground font-medium transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                  {image.alt}
-                </p>
-              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 border-2 border-primary/0 group-hover:border-primary/50 rounded-xl transition-all duration-300" />
             </div>
           ))}
         </div>
 
-        {/* Pagination Controls */}
-        {totalPages > 1 && (
-          <div className="flex items-center justify-center gap-2">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={() => goToPage(currentPage - 1)}
-              disabled={currentPage === 1}
-              className="disabled:opacity-50"
+        <div className="flex justify-center items-center gap-2 mb-12">
+          {Array.from({ length: totalPages }, (_, i) => (
+            <button
+              key={i}
+              onClick={() => goToPage(i + 1)}
+              className={`px-5 py-2.5 rounded-xl transition-all duration-300 font-medium ${
+                currentPage === i + 1
+                  ? "bg-primary text-white shadow-glow scale-105 hover:-translate-y-0.5"
+                  : "glass-card text-foreground border-border hover:border-primary/30 hover:scale-105 hover:-translate-y-0.5"
+              }`}
             >
-              <ChevronLeft className="w-5 h-5" />
-            </Button>
+              {i + 1}
+            </button>
+          ))}
+        </div>
 
-            <div className="flex gap-2">
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                <Button
-                  key={page}
-                  variant={currentPage === page ? "default" : "outline"}
-                  size="icon"
-                  onClick={() => goToPage(page)}
-                  className="w-10 h-10"
-                >
-                  {page}
-                </Button>
-              ))}
-            </div>
-
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={() => goToPage(currentPage + 1)}
-              disabled={currentPage === totalPages}
-              className="disabled:opacity-50"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </Button>
+        {/* Disclaimer with Glassmorphism */}
+        <div className="mt-4 text-center animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
+          <div className="glass-card max-w-2xl mx-auto p-6 rounded-2xl border-border">
+            <p className="text-sm text-muted-foreground">
+              За персонални снимки от празненството, моля, обърнете се към{" "}
+              <a
+                href="mailto:marketing@eos-matrix.bg"
+                className="text-primary hover:text-primary/80 transition-colors underline"
+              >
+                marketing@eos-matrix.bg
+              </a>
+            </p>
           </div>
-        )}
+        </div>
 
-        {/* Lightbox */}
-        {selectedImage !== null && (
-          <div className="fixed inset-0 z-50 bg-dark-bg/95 flex items-center justify-center p-4 animate-fade-in">
-            <button
-              onClick={closeLightbox}
-              className="absolute top-4 right-4 text-foreground hover:text-primary transition-colors p-2 rounded-full bg-background/10 hover:bg-background/20"
-              aria-label="Затвори галерия"
-            >
-              <X className="w-8 h-8" />
-            </button>
+        {/* Lightbox Modal */}
+        <Dialog open={selectedImage !== null} onOpenChange={(open) => !open && closeLightbox()}>
+          <DialogOverlay className="bg-black/90 backdrop-blur-md" />
+          <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 border-0 bg-transparent shadow-none">
+            <div className="relative w-full h-full flex items-center justify-center">
+              {/* Close Button */}
+              <button
+                onClick={closeLightbox}
+                className="absolute top-4 right-4 z-50 text-white hover:text-primary transition-colors p-3 rounded-full bg-black/50 backdrop-blur-md hover:scale-110 hover:bg-black/70"
+                aria-label="Затвори галерия"
+              >
+                <X className="w-6 h-6" />
+              </button>
 
-            <button
-              onClick={prevImage}
-              className="absolute left-4 text-foreground hover:text-primary transition-colors p-2 rounded-full bg-background/10 hover:bg-background/20"
-              aria-label="Предишна снимка"
-            >
-              <ChevronLeft className="w-8 h-8" />
-            </button>
+              {/* Previous Button */}
+              <button
+                onClick={prevImage}
+                className="absolute left-4 z-50 text-white hover:text-primary transition-colors p-3 rounded-full bg-black/50 backdrop-blur-md hover:scale-110 hover:bg-black/70"
+                aria-label="Предишна снимка"
+              >
+                <ChevronLeft className="w-8 h-8" />
+              </button>
 
-            <button
-              onClick={nextImage}
-              className="absolute right-4 text-foreground hover:text-primary transition-colors p-2 rounded-full bg-background/10 hover:bg-background/20"
-              aria-label="Следваща снимка"
-            >
-              <ChevronRight className="w-8 h-8" />
-            </button>
+              {/* Next Button */}
+              <button
+                onClick={nextImage}
+                className="absolute right-4 z-50 text-white hover:text-primary transition-colors p-3 rounded-full bg-black/50 backdrop-blur-md hover:scale-110 hover:bg-black/70"
+                aria-label="Следваща снимка"
+              >
+                <ChevronRight className="w-8 h-8" />
+              </button>
 
-            <img
-              src={galleryImages[selectedImage].src}
-              alt={galleryImages[selectedImage].alt}
-              className="max-w-full max-h-[90vh] object-contain rounded-lg animate-scale-in"
-            />
+              {/* Image */}
+              {selectedImage !== null && (
+                <img
+                  src={galleryImages[selectedImage].src}
+                  alt={galleryImages[selectedImage].alt}
+                  className="max-w-full max-h-[85vh] object-contain rounded-lg animate-scale-in"
+                />
+              )}
 
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-foreground bg-background/10 px-4 py-2 rounded-full backdrop-blur-sm">
-              {selectedImage + 1} / {galleryImages.length}
+              {/* Image Counter */}
+              {selectedImage !== null && (
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white bg-black/50 backdrop-blur-md px-6 py-3 rounded-full font-medium">
+                  {selectedImage + 1} / {galleryImages.length}
+                </div>
+              )}
             </div>
-          </div>
-        )}
+          </DialogContent>
+        </Dialog>
       </div>
     </section>
   );

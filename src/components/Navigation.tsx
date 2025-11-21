@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import eosLogo from "@/assets/eos-logo.png";
 import { Button } from "@/components/ui/button";
 
 const navItems = [
@@ -38,30 +37,14 @@ const Navigation = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "bg-background/95 backdrop-blur-md shadow-lg border-b border-border"
-          : "bg-transparent"
+          ? "bg-background/95 backdrop-blur-md shadow-lg border-b border-border translate-y-0"
+          : "bg-transparent -translate-y-full"
       }`}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <a
-            href="#hero"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection("#hero");
-            }}
-            className="flex items-center"
-          >
-            <img
-              src={eosLogo}
-              alt="EOS Logo"
-              className="h-10 md:h-12 transition-all duration-300"
-            />
-          </a>
-
+        <div className="flex items-center justify-center h-20">
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-1">
             {navItems.map((item) => (
@@ -69,7 +52,9 @@ const Navigation = () => {
                 key={item.href}
                 variant="ghost"
                 onClick={() => scrollToSection(item.href)}
-                className="text-foreground hover:text-primary hover:bg-primary/10 transition-colors px-4 py-2 font-medium"
+                className={`${
+                  isScrolled ? "text-foreground" : "text-white"
+                } hover:text-primary hover:bg-primary/10 transition-colors px-4 py-2 font-medium`}
               >
                 {item.label}
               </Button>
@@ -79,7 +64,9 @@ const Navigation = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-foreground hover:text-primary transition-colors"
+            className={`md:hidden p-2 ${
+              isScrolled ? "text-foreground" : "text-white"
+            } hover:text-primary transition-colors`}
             aria-label="Toggle menu"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}

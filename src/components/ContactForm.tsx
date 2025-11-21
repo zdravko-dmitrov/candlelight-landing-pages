@@ -53,10 +53,10 @@ const ContactForm = () => {
                   <div>
                     <h3 className="font-semibold mb-1">Email</h3>
                     <a
-                      href="mailto:z.dimitrov9626@gmail.com"
+                      href="mailto:marketing@eos-matrix.bg"
                       className="text-muted-foreground hover:text-primary transition-colors"
                     >
-                      info@bg.eos-solutions.com
+                      marketing@eos-matrix.bg
                     </a>
                   </div>
                 </div>
