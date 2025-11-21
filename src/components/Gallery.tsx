@@ -5,7 +5,6 @@ import {
   DialogContent,
   DialogOverlay,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
 
 // Dynamically import all images from the gallery folder
 const galleryModules = import.meta.glob('@/assets/gallery/*.{jpg,jpeg,png,webp}', { eager: true });
@@ -30,7 +29,6 @@ const ITEMS_PER_PAGE = {
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [jumpToPageInput, setJumpToPageInput] = useState("");
 
   // Determine items per page based on screen size
   const getItemsPerPage = () => {
@@ -94,18 +92,9 @@ const Gallery = () => {
     }
   };
 
-  const handleJumpToPage = (e: React.FormEvent) => {
-    e.preventDefault();
-    const pageNum = parseInt(jumpToPageInput);
-    if (!isNaN(pageNum) && pageNum >= 1 && pageNum <= totalPages) {
-      goToPage(pageNum);
-      setJumpToPageInput("");
-    }
-  };
-
-  // Generate pagination numbers with ellipsis for mobile
+  // Generate pagination numbers with ellipsis - max 3 visible pages
   const getPaginationRange = () => {
-    const maxVisible = window.innerWidth < 768 ? 5 : 7; // Show 5 on mobile, 7 on desktop
+    const maxVisible = 3; // Always show max 3 pages
     const pages: (number | string)[] = [];
     
     if (totalPages <= maxVisible) {
@@ -116,31 +105,20 @@ const Gallery = () => {
     // Always show first page
     pages.push(1);
 
-    const sidePages = Math.floor((maxVisible - 3) / 2); // Pages to show on each side of current
-
-    if (currentPage <= sidePages + 2) {
-      // Near the start - show first few pages
-      for (let i = 2; i <= Math.min(maxVisible - 1, totalPages - 1); i++) {
-        pages.push(i);
-      }
-      if (maxVisible < totalPages) {
-        pages.push('...');
-      }
+    if (currentPage <= 2) {
+      // Near the start
+      pages.push(2);
+      pages.push('...');
       pages.push(totalPages);
-    } else if (currentPage >= totalPages - sidePages - 1) {
-      // Near the end - show last few pages
+    } else if (currentPage >= totalPages - 1) {
+      // Near the end
       pages.push('...');
-      for (let i = Math.max(2, totalPages - maxVisible + 2); i <= totalPages; i++) {
-        pages.push(i);
-      }
+      pages.push(totalPages - 1);
+      pages.push(totalPages);
     } else {
-      // In the middle - show current page with context
+      // In the middle - show current page only
       pages.push('...');
-      for (let i = currentPage - sidePages; i <= currentPage + sidePages; i++) {
-        if (i > 1 && i < totalPages) {
-          pages.push(i);
-        }
-      }
+      pages.push(currentPage);
       pages.push('...');
       pages.push(totalPages);
     }
@@ -186,95 +164,70 @@ const Gallery = () => {
         </div>
 
         {/* Pagination Controls */}
-        <div className="flex flex-col items-center gap-6 mb-12">
-          <div className="flex justify-center items-center gap-2 flex-wrap">
-            {/* First Page Button */}
-            <button
-              onClick={() => goToPage(1)}
-              disabled={currentPage === 1}
-              className="p-2 rounded-xl transition-all duration-300 glass-card text-foreground border-border hover:border-primary/30 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-              aria-label="Първа страница"
-            >
-              <ChevronsLeft className="w-5 h-5" />
-            </button>
+        <div className="flex justify-center items-center gap-2 mb-12">
+          {/* First Page Button */}
+          <button
+            onClick={() => goToPage(1)}
+            disabled={currentPage === 1}
+            className="p-2 rounded-xl transition-all duration-300 glass-card text-foreground border-border hover:border-primary/30 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+            aria-label="Първа страница"
+          >
+            <ChevronsLeft className="w-5 h-5" />
+          </button>
 
-            {/* Previous Page Button */}
-            <button
-              onClick={() => goToPage(currentPage - 1)}
-              disabled={currentPage === 1}
-              className="p-2 rounded-xl transition-all duration-300 glass-card text-foreground border-border hover:border-primary/30 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-              aria-label="Предишна страница"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
+          {/* Previous Page Button */}
+          <button
+            onClick={() => goToPage(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="p-2 rounded-xl transition-all duration-300 glass-card text-foreground border-border hover:border-primary/30 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+            aria-label="Предишна страница"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
 
-            {/* Page Numbers */}
-            {getPaginationRange().map((page, index) => (
-              typeof page === 'number' ? (
-                <button
-                  key={`page-${page}`}
-                  onClick={() => goToPage(page)}
-                  className={`px-4 py-2 md:px-5 md:py-2.5 rounded-xl transition-all duration-300 font-medium ${
-                    currentPage === page
-                      ? "bg-primary text-white shadow-glow scale-105 hover:-translate-y-0.5"
-                      : "glass-card text-foreground border-border hover:border-primary/30 hover:scale-105 hover:-translate-y-0.5"
-                  }`}
-                >
-                  {page}
-                </button>
-              ) : (
-                <span
-                  key={`ellipsis-${index}`}
-                  className="px-2 py-2 text-muted-foreground"
-                >
-                  {page}
-                </span>
-              )
-            ))}
+          {/* Page Numbers */}
+          {getPaginationRange().map((page, index) => (
+            typeof page === 'number' ? (
+              <button
+                key={`page-${page}`}
+                onClick={() => goToPage(page)}
+                className={`px-3 py-2 md:px-4 md:py-2.5 rounded-xl transition-all duration-300 font-medium ${
+                  currentPage === page
+                    ? "bg-primary text-white shadow-glow scale-105 hover:-translate-y-0.5"
+                    : "glass-card text-foreground border-border hover:border-primary/30 hover:scale-105 hover:-translate-y-0.5"
+                }`}
+              >
+                {page}
+              </button>
+            ) : (
+              <span
+                key={`ellipsis-${index}`}
+                className="px-1 py-2 text-muted-foreground text-sm"
+              >
+                {page}
+              </span>
+            )
+          ))}
 
-            {/* Next Page Button */}
-            <button
-              onClick={() => goToPage(currentPage + 1)}
-              disabled={currentPage === totalPages}
-              className="p-2 rounded-xl transition-all duration-300 glass-card text-foreground border-border hover:border-primary/30 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-              aria-label="Следваща страница"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
+          {/* Next Page Button */}
+          <button
+            onClick={() => goToPage(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className="p-2 rounded-xl transition-all duration-300 glass-card text-foreground border-border hover:border-primary/30 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+            aria-label="Следваща страница"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
 
-            {/* Last Page Button */}
-            <button
-              onClick={() => goToPage(totalPages)}
-              disabled={currentPage === totalPages}
-              className="p-2 rounded-xl transition-all duration-300 glass-card text-foreground border-border hover:border-primary/30 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-              aria-label="Последна страница"
-            >
-              <ChevronsRight className="w-5 h-5" />
-            </button>
-          </div>
-
-          {/* Jump to Page Input */}
-          <form onSubmit={handleJumpToPage} className="flex items-center gap-3">
-            <label htmlFor="jumpToPage" className="text-sm font-medium text-foreground whitespace-nowrap">
-              Отиди на страница:
-            </label>
-            <Input
-              id="jumpToPage"
-              type="number"
-              min="1"
-              max={totalPages}
-              value={jumpToPageInput}
-              onChange={(e) => setJumpToPageInput(e.target.value)}
-              placeholder={`1-${totalPages}`}
-              className="w-24 glass-card border-border focus:border-primary"
-            />
-            <button
-              type="submit"
-              className="px-4 py-2 rounded-xl transition-all duration-300 bg-primary text-white hover:shadow-glow hover:scale-105"
-            >
-              Отиди
-            </button>
-          </form>
+          {/* Last Page Button */}
+          <button
+            onClick={() => goToPage(totalPages)}
+            disabled={currentPage === totalPages}
+            className="p-2 rounded-xl transition-all duration-300 glass-card text-foreground border-border hover:border-primary/30 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+            aria-label="Последна страница"
+          >
+            <ChevronsRight className="w-5 h-5" />
+          </button>
         </div>
 
         {/* Disclaimer with Glassmorphism */}
