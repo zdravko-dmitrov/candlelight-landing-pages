@@ -1,4 +1,4 @@
-import { Music, Calendar, MapPin } from "lucide-react";
+import { Music, Calendar, MapPin, PartyPopper } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 const EventStory = () => {
@@ -17,7 +17,7 @@ const EventStory = () => {
         </div>
 
         {/* Event Details Cards - Equal Height Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-20 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto mb-20 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
           <Card className="glass-card ambient-glow border-border hover:border-primary/30 transition-all duration-300 group hover:-translate-y-2 h-full">
             <div className="flex flex-col items-center justify-center p-8 text-center h-full">
               <Calendar className="w-12 h-12 text-primary mb-4 group-hover:scale-110 transition-transform" />
@@ -39,6 +39,14 @@ const EventStory = () => {
               <Music className="w-12 h-12 text-primary mb-4 group-hover:scale-110 transition-transform" />
               <h3 className="font-bold text-xl mb-2 text-foreground">Музика</h3>
               <p className="text-muted-foreground">Струнен квартет</p>
+            </div>
+          </Card>
+
+          <Card className="glass-card ambient-glow border-border hover:border-primary/30 transition-all duration-300 group hover:-translate-y-2 h-full">
+            <div className="flex flex-col items-center justify-center p-8 text-center h-full">
+              <PartyPopper className="w-12 h-12 text-primary mb-4 group-hover:scale-110 transition-transform" />
+              <h3 className="font-bold text-xl mb-2 text-foreground">Юбилей</h3>
+              <p className="text-muted-foreground">23 години ЕОС</p>
             </div>
           </Card>
         </div>
